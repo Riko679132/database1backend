@@ -62,12 +62,18 @@ copy config.local.example.yaml config.local.yaml
 ### 2.4 数据前置
 
 ```text
-data/ccus.sqlite                 主库（首次由 scripts/init_db.py 创建）
-data/compound_whitelist.csv      胺白名单
-data/raw_pdfs/                   PDF（不入库）
-data/raw_si/                     SI（不入库）
+data/ccus.sqlite                 主库（首次由 scripts/init_db.py 创建；不入库）
+data/compound_whitelist.csv      胺白名单（随仓库提供）
+data/raw_pdfs/                   PDF（不入库，需自行准备）
+data/raw_si/                     SI（不入库，需自行准备）
 data/manifests/                  A→B manifest（派生，不入库）
 ```
+
+仓库**不包含** `data/raw_pdfs/`、`data/raw_si/`、`extractions/`、主数据库和 `evaluation/artifacts/`。因此：
+
+- 从零复现 A/B 需要自己放 PDF，或从本地备份恢复；
+- `evaluation/evaluate.py --candidate extractions/batch_20261124_145027` 是本地 Phase-4 批次，克隆仓库后不存在；请换成你自己的批次，或恢复该目录；
+- `test_provenance.py`、`test_b_flow_integration.py`、`test_reasoning_chain.py` 依赖本地主库/批次/快照；没有这些数据时只能运行纯逻辑测试（水蒸气、rules、manifest 校验器的一部分）。
 
 首次：
 
@@ -379,6 +385,13 @@ B 会：manifest 校验 → pdf_to_text/OCR → 知识路由 → LLM 候选 → 
 
 - 新去重键已加 excerpt_path，但旧共享 location 61（3 条 test）仍只有一个字段；不能直接绑定三条不同摘录。
 - 这些记录仍可通过快照/批次 JSONL 追溯；回填工具会跳过并报告 `shared_location_ambiguous`。
+
+### G13 验收依赖本地数据/批次（高）
+
+- `data/raw_pdfs/`、`data/raw_si/`、`extractions/`、主库、`evaluation/artifacts/` 均不入库（版权/体积/隐私）。
+- 38 条 L2 回归依赖本地 `extractions/batch_20261124_145027`；新克隆无法直接跑同一条命令。
+- `test_provenance.py`、`test_b_flow_integration.py`、`test_reasoning_chain.py` 依赖本地主库/批次/快照。
+- 下一步：提供脱敏小样本批次，或在文档中明确“回归需恢复本地数据”；不要在仓库提交论文 PDF 或原文长摘录。
 
 ### G12 运行环境耦合 Windows（低）
 

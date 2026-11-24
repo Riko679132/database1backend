@@ -69,6 +69,8 @@ start_console.bat
 
 打开 `http://127.0.0.1:8765/`。工作台可执行检索、下载、批量入库预览、确认入库、postcheck 和导出。
 
+> 仓库不包含 `data/raw_pdfs/`、`data/raw_si/`、`extractions/`、主数据库和测试临时产物（版权/体积/隐私原因）。复现回归前需要自行准备 PDF/SI，或从本地备份恢复这些目录；没有本地 38 条 L2 批次时，回归脚本的 `--candidate` 要换成你自己的批次。
+
 > 没有 `web/dist` 时，`start_console.bat` 会尝试用 Node 构建前端；Node 只在前端源码修改时需要。
 
 ## 四、API Key 需要自行接入
