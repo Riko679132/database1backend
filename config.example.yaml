@@ -1,0 +1,28 @@
+# 无密钥配置模板：复制为 config.yaml
+# 密钥请放入 config.local.yaml（已 gitignore），不要写进本文件。
+database:
+  path: "./data/ccus.sqlite"
+  backup_dir: "./data/backups"
+  lock_file: "./data/.db.lock"
+
+extraction:
+  workdir: "./extractions"
+  whitelist: "./data/compound_whitelist.csv"
+
+scripts:
+  validate: "./scripts/validate.py"
+  preview: "./scripts/preview.py"
+  import: "./scripts/import_jsonl.py"
+
+schema_version: "v1.0.0"
+
+elsevier:
+  api_key: ""
+  base_url: "https://api.elsevier.com/content/search/scopus"
+  max_results: 200
+  page_size: 25
+  query: 'TITLE-ABS-KEY("aqueous amine" OR "aqueous MEA" OR "aqueous piperazine") AND TITLE-ABS-KEY("CO2 absorption" OR "CO2 capture") AND TITLE-ABS-KEY(loading OR capacity OR rate) AND NOT TITLE("non-aqueous" OR "water-lean" OR "solid sorbent" OR "membrane" OR "ionic liquid" OR "metal-organic framework" OR "MOF")'
+
+unpaywall:
+  base_url: "https://api.unpaywall.org/v2"
+  email: ""

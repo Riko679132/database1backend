@@ -1,0 +1,196 @@
+{
+  "created_at": "2026-11-24T22:53:02+0800",
+  "ok": true,
+  "rule_set": {
+    "rule_set_version": "phase5-1.0",
+    "rule_count": 21,
+    "rule_ids": [
+      "R-EVD-01",
+      "R-EVD-02",
+      "R-EVD-03",
+      "R-EVD-04",
+      "R-EVD-05",
+      "R-DET-01",
+      "R-DET-02",
+      "R-DET-03",
+      "R-DET-04",
+      "R-DET-05",
+      "R-DET-06",
+      "R-EXP-01",
+      "R-EXP-02",
+      "R-XSEC-01",
+      "R-XSEC-02",
+      "R-XSEC-03",
+      "R-QC-01",
+      "R-QC-02",
+      "R-INF-01",
+      "R-OCR-01",
+      "R-MAN-01"
+    ],
+    "knowledge_files": {
+      "validation/evidence_classification.md": "5f5a68dc127c22efe3d9765788eeef41ec5da5b09c9f0546c9aba62b976cb493",
+      "formulas/concentration_conversion.md": "8f8e7a7e291049c749b1b6969da609f8bb4dbaeef1c8bfb99fece2bc9b4d7419",
+      "formulas/partial_pressure.md": "b8adebc82d5a723033c8ec814aa47f9c96a95e3d9f5a88c293e568866ef90869",
+      "formulas/mass_balance.md": "4e43615529b31b0fe4b3bce6555ba577e8b136a380edf4540dbe9c61bba9bec4",
+      "validation/unit_validation.md": "9d0e8e72ce2888062a6a9c6e57e108bc1731fff980139a91c8e4a6304bf038d9",
+      "formulas/water_vapor.md": "d1e8aabcc453fef7a98dedd36e84516e312781989a30a664aaa0289b0b4cfa55",
+      "knowledge/experimental_methods.md": "b885058780600543a1555ba094c6e537f4ece5c24cddd9f2ff6060af3e819a01",
+      "knowledge/co2_equilibrium.md": "990d5dbc00c2d8d1acb57cd0f7cf13fcc8b294dc5c480daba9cb43dc61a88c10",
+      "validation/consistency_check.md": "5f2a97526d8079ca2909de765781bdd7bb02225c4511f0371538d14650301bb7",
+      "docs/PHASE5_MANIFEST.md": "e0b36d7e344e3400b607fbaa240be317cab802d9f850007d5987c49c6f7c8d30"
+    },
+    "sha256": "fd1d6832ea9c63d14040781bcd391965b18e2579cb4a213012e91b49c35f0628"
+  },
+  "cases": [
+    {
+      "case": "explicit_extraction",
+      "paper": "10.1016/j.apenergy.2016.03.043",
+      "ok": true,
+      "qc_level": "L2",
+      "rule_ids": [
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-03",
+        "R-EVD-01",
+        "R-EVD-02",
+        "R-EVD-01",
+        "R-EVD-03",
+        "R-EVD-01",
+        "R-DET-01",
+        "R-DET-02",
+        "R-DET-05",
+        "R-DET-06",
+        "R-EXP-01"
+      ],
+      "excerpt": "Table 3 CO2 loading of CO2 in aqueous amine solution at 30 wt%, 40 °C and 1 bar (15% CO2 and 85% N2). 1 Monoethanolamine (MEA) 30 0.58",
+      "rule_ids_valid": true
+    },
+    {
+      "case": "cross_section_association",
+      "paper": "10.1039/d6gc02196d",
+      "ok": true,
+      "qc_level": "L2",
+      "rule_ids": [
+        "R-DET-02",
+        "R-DET-06",
+        "R-XSEC-02",
+        "R-EXP-01"
+      ],
+      "loc_label": "pp.10540-10544, Table 4 (MEA 30 wt%) and regeneration results text",
+      "rule_ids_valid": true
+    },
+    {
+      "case": "deterministic_formula",
+      "paper": "10.1016/j.jece.2024.112664",
+      "ok": true,
+      "qc_level": "L2",
+      "formula": "value_std = 34.0 * 1e-05",
+      "inputs": {
+        "value_original": 34.0,
+        "unit_original": "10-5 mol CO2/mol·s",
+        "scale": 1e-05,
+        "time_unit": "s",
+        "basis": "mol_amine"
+      },
+      "output": {
+        "value": 0.00034,
+        "unit": "mol_CO2/(mol_amine*s)"
+      },
+      "rule_ids": [
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-02",
+        "R-EVD-01",
+        "R-EVD-05",
+        "R-EVD-03",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-DET-02",
+        "R-DET-06",
+        "R-DET-03",
+        "R-DET-03",
+        "R-EXP-01"
+      ],
+      "rule_ids_valid": true
+    },
+    {
+      "case": "expert_context_inference",
+      "paper": "10.1021/ie400825u",
+      "ok": true,
+      "qc_level": "L2",
+      "total_pressure_kPa": 101.325,
+      "co2_vol_pct": 20.0,
+      "rule_ids": [
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-02",
+        "R-EVD-01",
+        "R-EVD-05",
+        "R-EVD-03",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-02",
+        "R-DET-02",
+        "R-DET-06",
+        "R-DET-04",
+        "R-XSEC-03",
+        "R-EXP-01"
+      ],
+      "evidence_notes": [
+        "Gas 20% CO2:80% N2",
+        "fresh solution batch absorption",
+        "method: atmospheric pressure",
+        "method: 20% CO2 / 80% N2",
+        "fresh 50 mL solution at start"
+      ],
+      "rule_ids_valid": true
+    },
+    {
+      "case": "insufficient_evidence",
+      "paper": "10.1016/j.jece.2024.112664",
+      "ok": true,
+      "qc_level": "L3",
+      "initial_loading": null,
+      "missing": {
+        "missing": [
+          "co2_vol_pct",
+          "initial_loading"
+        ]
+      },
+      "rule_ids": [
+        "R-EVD-01",
+        "R-EVD-03",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-EVD-05",
+        "R-EVD-01",
+        "R-EVD-01",
+        "R-DET-02",
+        "R-DET-06",
+        "R-XSEC-01",
+        "R-INF-01"
+      ],
+      "rule_ids_valid": true
+    },
+    {
+      "case": "consistency_gate_on_final_batch",
+      "paper": "batch_20261124_145027",
+      "ok": true,
+      "checked": 43,
+      "issues": 0,
+      "downgraded": 0,
+      "rule_ids": [
+        "R-DET-01",
+        "R-DET-02",
+        "R-DET-05"
+      ]
+    }
+  ]
+}

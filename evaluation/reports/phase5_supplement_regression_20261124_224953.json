@@ -1,0 +1,399 @@
+{
+  "label": "phase5_supplement_regression",
+  "created_at": "2026-11-24T22:49:53+0800",
+  "eval_set": "D:\\database1\\evaluation\\eval_set_v1.json",
+  "candidate": "D:\\database1\\extractions\\batch_20261124_145027",
+  "label_caveat": "Regression baseline only; human_verified=false for every sample.",
+  "candidate_meta": {
+    "batch_id": "batch_20261124_145027",
+    "papers": 7,
+    "models": [
+      "deepseek-chat"
+    ],
+    "prompt_sha256": [
+      "0ea705cf910e022161f862714fb19f5961d27136a532e3b2dc80f7f591300399",
+      "88c0a21f26600c5f1f660b0706cb0a948753e20b0c4ca6f8cd7fd5957c242df4",
+      "8fb3cd5d797e9f1952cc38dfeeadba0d5e68b00fad3359ab7e7c023d832afb46",
+      "91e9ff9b5238cf3769a932f295a076764f04d27db46d68a138bbe87517f06334",
+      "92058ba6e8ed6a86a6db7caaa8463f32862eae2566f01f24afdf948fd0248410",
+      "ad22a0d3e80003ad61c396964def443a13bb9d29dcc27fb7d616c3ce19fa15b5",
+      "ff9da152884a82fbed1ad065079fd4f0fa587e86684c98afdd49621e99eeb615"
+    ],
+    "module_sets": [
+      [
+        "amine_properties",
+        "amine_chemistry",
+        "co2_equilibrium",
+        "mixed_amine_systems"
+      ],
+      [
+        "amine_properties",
+        "amine_chemistry",
+        "experimental_methods",
+        "co2_equilibrium"
+      ],
+      [
+        "amine_properties",
+        "amine_chemistry",
+        "mixed_amine_systems",
+        "co2_equilibrium"
+      ],
+      [
+        "amine_properties",
+        "co2_equilibrium",
+        "amine_chemistry",
+        "mixed_amine_systems"
+      ],
+      [
+        "amine_properties",
+        "co2_equilibrium",
+        "mixed_amine_systems",
+        "amine_chemistry"
+      ],
+      [
+        "amine_properties",
+        "co2_equilibrium",
+        "mixed_amine_systems",
+        "experimental_methods"
+      ],
+      [
+        "amine_properties",
+        "mixed_amine_systems",
+        "co2_equilibrium",
+        "physical_properties"
+      ]
+    ]
+  },
+  "counts": {
+    "expected_samples": 38,
+    "matched": 38,
+    "unmatched": 0,
+    "candidate_records": 53,
+    "extra_candidate_records": 15,
+    "rejected_records": 1
+  },
+  "field_completeness": {
+    "overall": 0.9725,
+    "present": 389,
+    "expected": 400,
+    "per_field": {
+      "conditions.co2_partial_kPa": {
+        "expected": 37,
+        "present": 34,
+        "within": 34,
+        "outside": 0,
+        "missing": 3,
+        "completeness": 0.9189,
+        "agreement": 0.9189
+      },
+      "conditions.co2_vol_pct": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.initial_loading": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.temperature_K": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.total_pressure_kPa": {
+        "expected": 33,
+        "present": 32,
+        "within": 32,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.9697,
+        "agreement": 0.9697
+      },
+      "loadings.lean": {
+        "expected": 4,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.75,
+        "agreement": 0.75
+      },
+      "loadings.rich": {
+        "expected": 36,
+        "present": 36,
+        "within": 36,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.absorption_amount_volumetric": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.absorption_rate_volumetric": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.cyclic_capacity": {
+        "expected": 4,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.75,
+        "agreement": 0.75
+      },
+      "performance.cyclic_capacity_volumetric": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.equilibrium_loading": {
+        "expected": 28,
+        "present": 28,
+        "within": 28,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.initial_absorption_rate": {
+        "expected": 3,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.initial_desorption_rate": {
+        "expected": 3,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.pka": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.regeneration_efficiency": {
+        "expected": 5,
+        "present": 4,
+        "within": 4,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.8,
+        "agreement": 0.8
+      },
+      "performance.regeneration_heat": {
+        "expected": 1,
+        "present": 1,
+        "within": 1,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.total_amine_wt": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.water_wt": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.wt_a": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.wt_b": {
+        "expected": 14,
+        "present": 14,
+        "within": 14,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      }
+    }
+  },
+  "numeric_agreement": {
+    "overall": 0.9725,
+    "within": 389,
+    "expected": 400
+  },
+  "recipe_closure": {
+    "complete": 38
+  },
+  "qc_outcomes": {
+    "L2": 38
+  },
+  "false_reject_l2": 0,
+  "false_accept_note": "The 38-record set contains only L2 positives; false-accept requires a negative eval set.",
+  "rejection_reasons": {
+    "llm_snapshot_machine_verified": 38,
+    "human_audit_pending": 38,
+    "temperature_K:Explicit": 38,
+    "initial_loading:Contextual": 38,
+    "co2_vol_pct:Derived": 27,
+    "co2_vol_pct:Explicit": 10,
+    "co2_vol_pct:Contextual": 1,
+    "rejected:concentration_out_of_range": 1,
+    "rejected:mass_balance": 1,
+    "rejected:test_co2_vol_pct": 1,
+    "rejected:test_initial_loading": 1
+  },
+  "per_doi": {
+    "10.1016/j.apenergy.2016.03.043": {
+      "expected": 4,
+      "matched": 4,
+      "within": 36,
+      "fields": 36
+    },
+    "10.1016/j.ijggc.2016.12.018": {
+      "expected": 1,
+      "matched": 1,
+      "within": 8,
+      "fields": 12
+    },
+    "10.1016/j.jece.2024.112664": {
+      "expected": 3,
+      "matched": 3,
+      "within": 36,
+      "fields": 39
+    },
+    "10.1021/acs.iecr.9b00552": {
+      "expected": 1,
+      "matched": 1,
+      "within": 8,
+      "fields": 8
+    },
+    "10.1021/ie400825u": {
+      "expected": 1,
+      "matched": 1,
+      "within": 8,
+      "fields": 12
+    },
+    "10.1021/je00005a025": {
+      "expected": 27,
+      "matched": 27,
+      "within": 284,
+      "fields": 284
+    },
+    "10.1039/d6gc02196d": {
+      "expected": 1,
+      "matched": 1,
+      "within": 9,
+      "fields": 9
+    }
+  },
+  "failures": [
+    {
+      "sample_id": "24",
+      "doi": "10.1016/j.jece.2024.112664",
+      "match_score": 2.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "25",
+      "doi": "10.1016/j.jece.2024.112664",
+      "match_score": 2.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "26",
+      "doi": "10.1016/j.jece.2024.112664",
+      "match_score": 2.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "58",
+      "doi": "10.1016/j.ijggc.2016.12.018",
+      "match_score": 10.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.total_pressure_kPa",
+        "loadings.lean",
+        "performance.cyclic_capacity",
+        "performance.regeneration_efficiency"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "59",
+      "doi": "10.1021/ie400825u",
+      "match_score": 20.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "performance.absorption_rate_volumetric",
+        "performance.absorption_amount_volumetric",
+        "performance.cyclic_capacity_volumetric",
+        "performance.pka"
+      ],
+      "outside_tolerance": []
+    }
+  ]
+}

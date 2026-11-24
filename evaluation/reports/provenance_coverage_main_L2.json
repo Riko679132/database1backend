@@ -1,0 +1,388 @@
+{
+  "db": "data/ccus.sqlite",
+  "quality_filter": "L2",
+  "tests": 38,
+  "snapshot_present": 38,
+  "excerpt_path_present": 1,
+  "sidecar_ok": 1,
+  "sidecar_missing_or_bad": 0,
+  "qc_record_present": 0,
+  "human_verified_1": 0,
+  "issues": [
+    {
+      "test_id": 3,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 24,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 24,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 25,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 25,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 26,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 26,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 27,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 27,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 28,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 28,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 29,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 29,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 30,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 30,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 31,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 31,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 32,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 32,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 33,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 33,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 34,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 34,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 35,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 35,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 36,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 36,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 37,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 37,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 38,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 38,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 39,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 39,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 40,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 40,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 41,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 41,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 42,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 42,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 43,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 43,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 44,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 44,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 45,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 45,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 46,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 46,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 47,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 47,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 48,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 48,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 49,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 49,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 50,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 50,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 51,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 51,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 52,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 52,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 53,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 53,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 54,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 54,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 55,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 55,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 56,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 56,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 57,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 57,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 58,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 58,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 59,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 59,
+      "issue": "qc_record_missing",
+      "path": null
+    },
+    {
+      "test_id": 60,
+      "issue": "excerpt_path_null",
+      "path": null
+    },
+    {
+      "test_id": 60,
+      "issue": "qc_record_missing",
+      "path": null
+    }
+  ]
+}

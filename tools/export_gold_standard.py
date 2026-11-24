@@ -22,12 +22,14 @@ SELECT t.test_id, t.batch_id, t.test_origin, t.qc_level,
        r.recipe_id, r.recipe_type, r.wt_a, r.wt_b, r.water_wt, r.total_amine_wt,
        c.standard_name, c.inchikey, c.cas_no, c.smiles, c.amine_class,
        s.doi, s.title, s.authors, s.year, s.journal, s.pdf_path, s.pdf_hash,
-       l.loc_type, l.loc_label
+       l.loc_type, l.loc_label, l.loc_detail, l.excerpt_path,
+       q.human_verified, q.reviewer, q.review_time
 FROM test t
 JOIN recipe r ON r.recipe_id = t.recipe_id
 JOIN compound c ON c.compound_id = r.amine_a_id
 LEFT JOIN source s ON s.source_id = t.source_id
 LEFT JOIN source_location l ON l.location_id = t.location_id
+LEFT JOIN qc_record q ON q.test_id = t.test_id
 WHERE t.qc_level = 'L2' AND t.test_origin = 'literature'
 ORDER BY t.test_id
 """
@@ -45,6 +47,7 @@ CSV_FIELDS = [
     "initial_loading", "rich_loading", "lean_loading",
     "metric_name", "value", "unit", "value_original", "unit_original", "is_derived",
     "metric_definition", "qc_level", "raw_data_path", "raw_data_hash",
+    "loc_detail", "excerpt_path", "human_verified", "reviewer", "review_time",
 ]
 
 
@@ -79,6 +82,8 @@ def main():
                     "pdf_hash": row["pdf_hash"],
                     "loc_type": row["loc_type"],
                     "loc_label": row["loc_label"],
+                    "loc_detail": row["loc_detail"],
+                    "excerpt_path": row["excerpt_path"],
                 },
                 "compound": {
                     "standard_name": row["standard_name"],
@@ -112,6 +117,9 @@ def main():
                     "qc_reason": row["qc_reason"],
                     "raw_data_path": row["raw_data_path"],
                     "raw_data_hash": row["raw_data_hash"],
+                    "human_verified": row["human_verified"],
+                    "reviewer": row["reviewer"],
+                    "review_time": row["review_time"],
                 },
             }
         )
@@ -167,6 +175,11 @@ def main():
                 "qc_level": r["qc"]["qc_level"],
                 "raw_data_path": r["qc"]["raw_data_path"],
                 "raw_data_hash": r["qc"]["raw_data_hash"],
+                "loc_detail": r["source"]["loc_detail"],
+                "excerpt_path": r["source"]["excerpt_path"],
+                "human_verified": r["qc"]["human_verified"],
+                "reviewer": r["qc"]["reviewer"],
+                "review_time": r["qc"]["review_time"],
             }
             if not r["performance"]:
                 w.writerow(base)

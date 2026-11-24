@@ -1,0 +1,252 @@
+{
+  "created_at": "2026-11-24T21:48:05+0800",
+  "candidate_batches": [
+    "extractions\\batch_20261124_145027",
+    "extractions\\20261027_04",
+    "extractions\\20261027_05"
+  ],
+  "negative_samples": 28,
+  "with_candidate": 18,
+  "outcomes": {
+    "correct_downgrade_L3": 9,
+    "correct_reject_L4": 1,
+    "correct_not_extracted": 10,
+    "correct_model_L3": 3,
+    "correct_boundary_kept_L3": 5
+  },
+  "false_accept_l2": 0,
+  "false_accept_any": 0,
+  "false_reject_boundary": 0,
+  "boundary_kept_l2": 0,
+  "false_accept_rate_l2_all": 0.0,
+  "false_accept_rate_l2_with_candidate": 0.0,
+  "false_accept_rate_any_all": 0.0,
+  "false_accept_rate_any_with_candidate": 0.0,
+  "human_verified": false,
+  "rows": [
+    {
+      "sample_id": "EXTRA-01",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat"
+    },
+    {
+      "sample_id": "EXTRA-02",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat"
+    },
+    {
+      "sample_id": "EXTRA-03",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat"
+    },
+    {
+      "sample_id": "EXTRA-04",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat"
+    },
+    {
+      "sample_id": "EXTRA-05",
+      "doi": "10.1021/ie400825u",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat"
+    },
+    {
+      "sample_id": "EXTRA-06",
+      "doi": "10.1021/acs.iecr.9b00552",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat"
+    },
+    {
+      "sample_id": "L4-07",
+      "doi": "10.1016/j.ijggc.2016.12.018",
+      "label": "Duplicate",
+      "qc_level": "L4",
+      "outcome": "correct_reject_L4",
+      "reason": "L4 rejected record from a DOI that already has a valid L2 MEA record; wt/mass balance missing"
+    },
+    {
+      "sample_id": "OOS-08",
+      "doi": "10.1039/d5ta10129h",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "综述/二次数据, 数值均为转引他文, 违反'仅取原始测量'原则; 可作为引文挖掘线索定位原始文献"
+    },
+    {
+      "sample_id": "OOS-09",
+      "doi": "10.1021/jacs.6c06590",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "主体系明确非水(无水添加); 仅含 MEA/吗啉对照, 需二次核查对照是否为水性, 潜在增补价值有限"
+    },
+    {
+      "sample_id": "OOS-10",
+      "doi": "10.1016/j.fuel.2025.134712",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "标题即 non-aqueous amines; 研究对象为喷雾雾化工艺(闪沸/液滴), 无平衡态吸收性能; 双重边界外"
+    },
+    {
+      "sample_id": "OOS-11",
+      "doi": "10.1039/d4gc05489j",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "固体水凝胶吸附剂(amine carriers), 非水性胺溶液吸收; 属吸附/材料体系, 研究边界外"
+    },
+    {
+      "sample_id": "OOS-12",
+      "doi": "10.1007/s43153-023-00348-5",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "氨基酸为盐形态(salt_flag); PDF 实为预印本(DOI 10.21203/rs.3.rs-1724921/v1)未经同行评审; DEA/ARG 均不在白名单"
+    },
+    {
+      "sample_id": "OOS-13",
+      "doi": "10.25130/tjes.31.1.22",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "深共熔溶剂(DES)体系=边界外; 文中 MEA 仅作传质系数对照(0.152 mol/bar·L·min), 无浓度/CO2分压/loading, 不可入库"
+    },
+    {
+      "sample_id": "OOS-PROC-14",
+      "doi": "10.1021/acs.iecr.1c04123",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "1 M PZ/MEA/MDEA/AMP blends; mol/L without density; recipe cannot close"
+    },
+    {
+      "sample_id": "OOS-PROC-15",
+      "doi": "10.1155/2022/6278342",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "20 wt% MEA VLE only in figures; data embargo; no table"
+    },
+    {
+      "sample_id": "OOS-PROC-16",
+      "doi": "10.1021/acs.iecr.4c03980",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "iron solubility in MEA; no amine absorption performance data"
+    },
+    {
+      "sample_id": "OOS-PROC-17",
+      "doi": "10.1016/j.ces.2017.02.036",
+      "label": "Out of Scope",
+      "qc_level": null,
+      "outcome": "correct_not_extracted",
+      "reason": "2-5 M amine blends; no wt%/density; recipe cannot close"
+    },
+    {
+      "sample_id": "INC-18",
+      "doi": "10.1016/j.ijggc.2016.12.018",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "actual batch record missing required field(s): test_initial_loading;llm_snapshot_unverified;missing_initial_loading;required_evidence_unknown_or_assumed"
+    },
+    {
+      "sample_id": "INC-19",
+      "doi": "10.1021/acs.iecr.9b00552",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "actual batch record missing required field(s): test_temperature_K;test_co2_vol_pct;test_initial_loading;metric_semantics_downgrade"
+    },
+    {
+      "sample_id": "INC-20",
+      "doi": "10.1021/je00005a025",
+      "label": "Insufficient Evidence",
+      "qc_level": "L3",
+      "outcome": "correct_downgrade_L3",
+      "reason": "actual batch record missing required field(s): test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct"
+    },
+    {
+      "sample_id": "SIM-21",
+      "doi": "10.1016/j.ces.2026.124685",
+      "label": "Model-derived",
+      "qc_level": "L3",
+      "outcome": "correct_model_L3",
+      "reason": "actual simulation record from a historical batch; must stay L3"
+    },
+    {
+      "sample_id": "SIM-22",
+      "doi": "10.1016/j.seppur.2026.139992",
+      "label": "Model-derived",
+      "qc_level": "L3",
+      "outcome": "correct_model_L3",
+      "reason": "actual simulation record from a historical batch; must stay L3"
+    },
+    {
+      "sample_id": "BND-01",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "qc_level": "L3",
+      "outcome": "correct_boundary_kept_L3",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=208.5 kPa); valid data must remain available as L3"
+    },
+    {
+      "sample_id": "BND-02",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "qc_level": "L3",
+      "outcome": "correct_boundary_kept_L3",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=455.0 kPa); valid data must remain available as L3"
+    },
+    {
+      "sample_id": "BND-03",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "qc_level": "L3",
+      "outcome": "correct_boundary_kept_L3",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=834.0 kPa); valid data must remain available as L3"
+    },
+    {
+      "sample_id": "BND-04",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "qc_level": "L3",
+      "outcome": "correct_boundary_kept_L3",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=1241.0 kPa); valid data must remain available as L3"
+    },
+    {
+      "sample_id": "BND-05",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "qc_level": "L3",
+      "outcome": "correct_boundary_kept_L3",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=1593.0 kPa); valid data must remain available as L3"
+    },
+    {
+      "sample_id": "MODEL-28",
+      "doi": "10.1016/j.ces.2026.124685",
+      "label": "Model-derived",
+      "qc_level": "L3",
+      "outcome": "correct_model_L3",
+      "reason": "simulation/modeling paper; not experimental L2 data"
+    }
+  ]
+}

@@ -1,0 +1,644 @@
+{
+  "created_at": "2026-11-24T22:55:11+0800",
+  "ok": true,
+  "cases": [
+    {
+      "case": "A_explicit_p_h2o",
+      "issues": [],
+      "qc_before": "L2",
+      "qc_after": "L2",
+      "gas_phase": {
+        "status": "assessed",
+        "derivation": "explicit_p_co2",
+        "basis": "wet",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": 15.0,
+          "p_h2o_kPa": 7.4,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": 15.0,
+        "derived_co2_partial_kPa": null,
+        "p_h2o_kPa": 7.4,
+        "p_h2o_source": "explicit_paper_value",
+        "saturation": null,
+        "water_vapour_check": "pass",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "pass",
+            "detail": "P_CO2=15.0, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "pass",
+            "detail": "P_H2O=7.4, P_total=101.325"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "pass",
+            "detail": "P_CO2+P_H2O=22.4, P_total=101.325"
+          }
+        ],
+        "anomalies": [],
+        "notes": [],
+        "applied_to_test": false
+      },
+      "co2_partial_kPa": 15.0,
+      "notes": "llm_extraction_no_snapshot"
+    },
+    {
+      "case": "B_wet_basis",
+      "issues": [],
+      "qc_before": "L2",
+      "qc_after": "L2",
+      "gas_phase": {
+        "status": "derived_wet_basis",
+        "derivation": "wet_basis",
+        "basis": "wet",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": null,
+          "p_h2o_kPa": null,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": 15.19875,
+        "derived_co2_partial_kPa": 15.19875,
+        "p_h2o_kPa": null,
+        "p_h2o_source": "missing",
+        "saturation": null,
+        "water_vapour_check": "not_assessable",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "pass",
+            "detail": "P_CO2=15.19875, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          }
+        ],
+        "anomalies": [],
+        "notes": [
+          "no water-vapour information; water check not assessable",
+          "P_CO2 = y_CO2,wet * P_total"
+        ],
+        "applied_to_test": true
+      },
+      "co2_partial_kPa": 15.19875,
+      "notes": "llm_extraction_no_snapshot;co2_partial_derived_wet_basis"
+    },
+    {
+      "case": "C_dry_with_p_h2o",
+      "issues": [],
+      "qc_before": "L2",
+      "qc_after": "L2",
+      "gas_phase": {
+        "status": "derived_dry_basis_with_p_h2o",
+        "derivation": "dry_basis_with_p_h2o",
+        "basis": "dry",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": null,
+          "p_h2o_kPa": 7.4,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": 14.08875,
+        "derived_co2_partial_kPa": 14.08875,
+        "p_h2o_kPa": 7.4,
+        "p_h2o_source": "explicit_paper_value",
+        "saturation": null,
+        "water_vapour_check": "pass",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "pass",
+            "detail": "P_CO2=14.08875, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "pass",
+            "detail": "P_H2O=7.4, P_total=101.325"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "pass",
+            "detail": "P_CO2+P_H2O=21.48875, P_total=101.325"
+          }
+        ],
+        "anomalies": [],
+        "notes": [
+          "P_CO2 = y_CO2,dry * (P_total - P_H2O)"
+        ],
+        "applied_to_test": true
+      },
+      "co2_partial_kPa": 14.08875,
+      "notes": "llm_extraction_no_snapshot;co2_partial_derived_dry_basis_with_p_h2o"
+    },
+    {
+      "case": "D_dry_without_p_h2o",
+      "issues": [],
+      "qc_before": "L2",
+      "qc_after": "L2",
+      "gas_phase": {
+        "status": "blocked_dry_basis_missing_p_h2o",
+        "derivation": "blocked_dry_basis_missing_p_h2o",
+        "basis": "dry",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": null,
+          "p_h2o_kPa": null,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": null,
+        "derived_co2_partial_kPa": null,
+        "p_h2o_kPa": null,
+        "p_h2o_source": "missing",
+        "saturation": null,
+        "water_vapour_check": "blocked",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "not_assessable",
+            "detail": "P_CO2=None, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          }
+        ],
+        "anomalies": [],
+        "notes": [
+          "dry-basis gas composition without P_H2O; total pressure is not dry-gas pressure",
+          "P_CO2 not derived: dry basis but P_H2O is unknown"
+        ],
+        "applied_to_test": false
+      },
+      "co2_partial_kPa": null,
+      "notes": "llm_extraction_no_snapshot;co2_partial_not_derived_dry_basis_missing_p_h2o"
+    },
+    {
+      "case": "E_no_water_info",
+      "issues": [],
+      "qc_before": "L2",
+      "qc_after": "L2",
+      "gas_phase": {
+        "status": "assessed",
+        "derivation": "explicit_p_co2",
+        "basis": "unknown",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": 15.0,
+          "p_h2o_kPa": null,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": 15.0,
+        "derived_co2_partial_kPa": null,
+        "p_h2o_kPa": null,
+        "p_h2o_source": "missing",
+        "saturation": null,
+        "water_vapour_check": "not_assessable",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "pass",
+            "detail": "P_CO2=15.0, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          }
+        ],
+        "anomalies": [],
+        "notes": [
+          "no water-vapour information; water check not assessable"
+        ],
+        "applied_to_test": false
+      },
+      "co2_partial_kPa": 15.0,
+      "notes": "llm_extraction_no_snapshot"
+    },
+    {
+      "case": "F_unknown_basis_no_partial",
+      "issues": [],
+      "qc_before": "L2",
+      "qc_after": "L2",
+      "gas_phase": {
+        "status": "blocked_basis_unknown",
+        "derivation": "blocked_basis_unknown",
+        "basis": "unknown",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": null,
+          "p_h2o_kPa": null,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": null,
+        "derived_co2_partial_kPa": null,
+        "p_h2o_kPa": null,
+        "p_h2o_source": "missing",
+        "saturation": null,
+        "water_vapour_check": "blocked",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "not_assessable",
+            "detail": "P_CO2=None, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          }
+        ],
+        "anomalies": [],
+        "notes": [
+          "no water-vapour information; water check not assessable",
+          "P_CO2 not derived: gas basis is unknown; total pressure cannot be assumed wet"
+        ],
+        "applied_to_test": false
+      },
+      "co2_partial_kPa": null,
+      "notes": "llm_extraction_no_snapshot;co2_partial_not_derived_basis_unknown"
+    },
+    {
+      "case": "G_pco2_gt_total",
+      "issues": [
+        {
+          "rule_id": "R-DET-01",
+          "blocking": true,
+          "reason": "derived_partial_pressure_mismatch",
+          "detail": "recorded=120.0, expected=15.1988, basis=wet"
+        },
+        {
+          "rule_id": "R-DET-05",
+          "blocking": true,
+          "reason": "co2_partial_exceeds_total_pressure",
+          "detail": "P_CO2=120.0, P_total=101.325"
+        },
+        {
+          "rule_id": "R-DET-06",
+          "blocking": true,
+          "reason": "component_sum_exceeds_total",
+          "detail": "P_CO2+P_H2O=127.4 > P_total=101.325"
+        },
+        {
+          "rule_id": "R-DET-06",
+          "blocking": true,
+          "reason": "partial_pressure_inconsistent_with_wet_fraction",
+          "detail": "recorded=120.0, y_wet*P_total=15.19875"
+        }
+      ],
+      "qc_before": "L2",
+      "qc_after": "L3",
+      "gas_phase": {
+        "status": "anomaly",
+        "derivation": "explicit_p_co2",
+        "basis": "wet",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": 120.0,
+          "p_h2o_kPa": 7.4,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": 120.0,
+        "derived_co2_partial_kPa": null,
+        "p_h2o_kPa": 7.4,
+        "p_h2o_source": "explicit_paper_value",
+        "saturation": null,
+        "water_vapour_check": "fail",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "fail",
+            "detail": "P_CO2=120.0, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "pass",
+            "detail": "P_H2O=7.4, P_total=101.325"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "fail",
+            "detail": "P_CO2+P_H2O=127.4, P_total=101.325"
+          }
+        ],
+        "anomalies": [
+          {
+            "code": "p_co2_exceeds_total",
+            "detail": "P_CO2=120.0 > P_total=101.325"
+          },
+          {
+            "code": "component_sum_exceeds_total",
+            "detail": "P_CO2+P_H2O=127.4 > P_total=101.325"
+          },
+          {
+            "code": "partial_pressure_inconsistent_with_wet_fraction",
+            "detail": "recorded=120.0, y_wet*P_total=15.19875"
+          }
+        ],
+        "notes": [],
+        "applied_to_test": false
+      },
+      "co2_partial_kPa": 120.0,
+      "notes": "llm_extraction_no_snapshot;gas_phase_anomaly;reasoning_gate:derived_partial_pressure_mismatch;reasoning_gate:co2_partial_exceeds_total_pressure;reasoning_gate:component_sum_exceeds_total;reasoning_gate:partial_pressure_inconsistent_with_wet_fraction"
+    },
+    {
+      "case": "H_component_sum_gt_total",
+      "issues": [
+        {
+          "rule_id": "R-DET-01",
+          "blocking": true,
+          "reason": "derived_partial_pressure_mismatch",
+          "detail": "recorded=98.0, expected=15.1988, basis=wet"
+        },
+        {
+          "rule_id": "R-DET-06",
+          "blocking": true,
+          "reason": "component_sum_exceeds_total",
+          "detail": "P_CO2+P_H2O=105.4 > P_total=101.325"
+        },
+        {
+          "rule_id": "R-DET-06",
+          "blocking": true,
+          "reason": "partial_pressure_inconsistent_with_wet_fraction",
+          "detail": "recorded=98.0, y_wet*P_total=15.19875"
+        }
+      ],
+      "qc_before": "L2",
+      "qc_after": "L3",
+      "gas_phase": {
+        "status": "anomaly",
+        "derivation": "explicit_p_co2",
+        "basis": "wet",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": 98.0,
+          "p_h2o_kPa": 7.4,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": 98.0,
+        "derived_co2_partial_kPa": null,
+        "p_h2o_kPa": 7.4,
+        "p_h2o_source": "explicit_paper_value",
+        "saturation": null,
+        "water_vapour_check": "fail",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "pass",
+            "detail": "P_CO2=98.0, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "pass",
+            "detail": "P_H2O=7.4, P_total=101.325"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "fail",
+            "detail": "P_CO2+P_H2O=105.4, P_total=101.325"
+          }
+        ],
+        "anomalies": [
+          {
+            "code": "component_sum_exceeds_total",
+            "detail": "P_CO2+P_H2O=105.4 > P_total=101.325"
+          },
+          {
+            "code": "partial_pressure_inconsistent_with_wet_fraction",
+            "detail": "recorded=98.0, y_wet*P_total=15.19875"
+          }
+        ],
+        "notes": [],
+        "applied_to_test": false
+      },
+      "co2_partial_kPa": 98.0,
+      "notes": "llm_extraction_no_snapshot;gas_phase_anomaly;reasoning_gate:derived_partial_pressure_mismatch;reasoning_gate:component_sum_exceeds_total;reasoning_gate:partial_pressure_inconsistent_with_wet_fraction"
+    },
+    {
+      "case": "I_wet_fraction_mismatch",
+      "issues": [
+        {
+          "rule_id": "R-DET-01",
+          "blocking": true,
+          "reason": "derived_partial_pressure_mismatch",
+          "detail": "recorded=30.0, expected=15.1988, basis=wet"
+        },
+        {
+          "rule_id": "R-DET-06",
+          "blocking": true,
+          "reason": "partial_pressure_inconsistent_with_wet_fraction",
+          "detail": "recorded=30.0, y_wet*P_total=15.19875"
+        }
+      ],
+      "qc_before": "L2",
+      "qc_after": "L3",
+      "gas_phase": {
+        "status": "anomaly",
+        "derivation": "explicit_p_co2",
+        "basis": "wet",
+        "inputs": {
+          "total_pressure_kPa": 101.325,
+          "co2_vol_pct": 15.0,
+          "p_co2_kPa": 30.0,
+          "p_h2o_kPa": null,
+          "y_h2o": null,
+          "water_activity": null,
+          "other_partial_kPa": null,
+          "temperature_K": 313.15
+        },
+        "p_co2_kPa": 30.0,
+        "derived_co2_partial_kPa": null,
+        "p_h2o_kPa": null,
+        "p_h2o_source": "missing",
+        "saturation": null,
+        "water_vapour_check": "not_assessable",
+        "checks": [
+          {
+            "name": "co2_le_total",
+            "status": "pass",
+            "detail": "P_CO2=30.0, P_total=101.325"
+          },
+          {
+            "name": "water_vapour_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          },
+          {
+            "name": "component_sum_le_total",
+            "status": "not_assessable",
+            "detail": "P_H2O or P_total missing"
+          }
+        ],
+        "anomalies": [
+          {
+            "code": "partial_pressure_inconsistent_with_wet_fraction",
+            "detail": "recorded=30.0, y_wet*P_total=15.19875"
+          }
+        ],
+        "notes": [
+          "no water-vapour information; water check not assessable"
+        ],
+        "applied_to_test": false
+      },
+      "co2_partial_kPa": 30.0,
+      "notes": "llm_extraction_no_snapshot;gas_phase_anomaly;reasoning_gate:derived_partial_pressure_mismatch;reasoning_gate:partial_pressure_inconsistent_with_wet_fraction"
+    },
+    {
+      "case": "A_check",
+      "ok": true
+    },
+    {
+      "case": "B_check",
+      "ok": true
+    },
+    {
+      "case": "C_check",
+      "ok": true
+    },
+    {
+      "case": "D_check",
+      "ok": true
+    },
+    {
+      "case": "E_check",
+      "ok": true
+    },
+    {
+      "case": "F_check",
+      "ok": true
+    },
+    {
+      "case": "G_check",
+      "ok": true
+    },
+    {
+      "case": "H_check",
+      "ok": true
+    },
+    {
+      "case": "I_check",
+      "ok": true
+    },
+    {
+      "case": "pure_water_saturation",
+      "ok": true,
+      "sat100": {
+        "status": "ok",
+        "p_kPa": 101.336529,
+        "temperature_C": 100.0,
+        "range_C": [
+          1.0,
+          100.0
+        ],
+        "source": "NIST Chemistry WebBook, Antoine equation for water (1-100 C), https://webbook.nist.gov/cgi/cbook.cgi?ID=C7732185&Mask=4&Type=ANTOINE",
+        "version": "nist-antoine-water-1-100c",
+        "note": "pure water only; not the water vapour pressure of an amine solution"
+      },
+      "sat25": {
+        "status": "ok",
+        "p_kPa": 3.157929,
+        "temperature_C": 25.0,
+        "range_C": [
+          1.0,
+          100.0
+        ],
+        "source": "NIST Chemistry WebBook, Antoine equation for water (1-100 C), https://webbook.nist.gov/cgi/cbook.cgi?ID=C7732185&Mask=4&Type=ANTOINE",
+        "version": "nist-antoine-water-1-100c",
+        "note": "pure water only; not the water vapour pressure of an amine solution"
+      },
+      "sat400": {
+        "status": "out_of_range",
+        "temperature_C": 126.85000000000002,
+        "range_C": [
+          1.0,
+          100.0
+        ],
+        "source": "NIST Chemistry WebBook, Antoine equation for water (1-100 C), https://webbook.nist.gov/cgi/cbook.cgi?ID=C7732185&Mask=4&Type=ANTOINE",
+        "version": "nist-antoine-water-1-100c"
+      }
+    },
+    {
+      "case": "solution_requires_activity",
+      "ok": true,
+      "no_activity": {
+        "p_h2o": null,
+        "source": "missing"
+      },
+      "with_activity": {
+        "p_h2o": 6.622596,
+        "source": "water_activity_times_pure_water_saturation"
+      }
+    },
+    {
+      "case": "real_db_scan",
+      "ok": true,
+      "tests": 63,
+      "status_counts": {
+        "not_assessable": 10,
+        "assessed": 37,
+        "blocked_basis_unknown": 16
+      },
+      "anomalies": [],
+      "note": "existing rows have no gas_basis/P_H2O, so water checks are not_assessable; no row is rejected"
+    }
+  ]
+}

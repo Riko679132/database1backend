@@ -64,21 +64,51 @@ def _compact_loc_detail(s, r):
     return f"{label}, {amine_sig}"
 
 def get_or_create_location(cur, source_id, s, loc_detail):
-    """按 (source_id, loc_type, loc_label, loc_detail) 四元组去重（细粒度：每行独立 location）。"""
+    """按 (source_id, loc_type, loc_label, loc_detail, excerpt_path) 去重。
+    excerpt_path 使同一表/同一配方的多行记录各有独立原文摘录，避免共享一行
+    location 时只能保留一个 excerpt。"""
     loc_type = s.get("loc_type")
     loc_label = s.get("loc_label")
+    excerpt_path = s.get("excerpt_path")
     cur.execute(
         "SELECT location_id FROM source_location "
-        "WHERE source_id IS ? AND loc_type IS ? AND loc_label IS ? AND loc_detail IS ?",
-        (source_id, loc_type, loc_label, loc_detail)
+        "WHERE source_id IS ? AND loc_type IS ? AND loc_label IS ? AND loc_detail IS ? "
+        "AND excerpt_path IS ?",
+        (source_id, loc_type, loc_label, loc_detail, excerpt_path)
     )
     row = cur.fetchone()
-    if row: return row[0]
+    if row:
+        return row[0]
+    # 旧行可能在同一 location 上缺 excerpt_path；若本条有摘录，补上而不是新建重复行。
+    if excerpt_path:
+        cur.execute(
+            "SELECT location_id FROM source_location "
+            "WHERE source_id IS ? AND loc_type IS ? AND loc_label IS ? AND loc_detail IS ? "
+            "AND excerpt_path IS NULL",
+            (source_id, loc_type, loc_label, loc_detail)
+        )
+        row = cur.fetchone()
+        if row:
+            used = cur.execute("SELECT 1 FROM test WHERE location_id=? LIMIT 1", (row[0],)).fetchone()
+            if not used:
+                cur.execute("UPDATE source_location SET excerpt_path=? WHERE location_id=?",
+                            (excerpt_path, row[0]))
+                return row[0]
     cur.execute(
         "INSERT INTO source_location(source_id,loc_type,loc_label,loc_detail,excerpt_path,extraction_method) "
         "VALUES(?,?,?,?,?,?)",
         (source_id, loc_type, loc_label, loc_detail,
-         s.get("excerpt_path"), s.get("extraction_method"))
+         excerpt_path, s.get("extraction_method"))
+    )
+    return cur.lastrowid
+
+
+def insert_qc_record(cur, test_id, qc):
+    """初始化人工核验状态为 0；不得把未核验记录写成已核验。"""
+    cur.execute(
+        "INSERT INTO qc_record(test_id,qc_level,qc_reason,reviewer,review_time,human_verified) "
+        "VALUES(?,?,?,?,?,0)",
+        (test_id, qc.get("qc_level"), qc.get("qc_reason"), None, None)
     )
     return cur.lastrowid
 
@@ -166,6 +196,7 @@ def main():
             t = rec.get("test", {}) or {}
             qc = rec.get("qc", {}) or {}
             test_id = insert_test(cur, recipe_id, source_id, location_id, t, qc)
+            insert_qc_record(cur, test_id, qc)
             for perf in (rec.get("performance") or []):
                 insert_performance(cur, test_id, perf)
             

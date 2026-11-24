@@ -1,0 +1,45 @@
+{
+  "ok": true,
+  "batch": "batch_20261124_225303",
+  "counts": {
+    "valid": 8,
+    "incomplete": 0,
+    "rejected": 0
+  },
+  "checks": [
+    {
+      "name": "batch_created",
+      "ok": true,
+      "batch": "batch_20261124_225303"
+    },
+    {
+      "name": "manifest_stored",
+      "ok": true
+    },
+    {
+      "name": "manifest_in_snapshot",
+      "ok": true
+    },
+    {
+      "name": "raw_record_in_snapshot",
+      "ok": true
+    },
+    {
+      "name": "reasoning_in_snapshot",
+      "ok": true
+    },
+    {
+      "name": "validate_produced_valid",
+      "ok": true,
+      "counts": {
+        "valid": 8,
+        "incomplete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "name": "no_database_write",
+      "ok": true
+    }
+  ]
+}

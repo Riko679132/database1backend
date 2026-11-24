@@ -1,0 +1,54 @@
+{
+  "frozen_at": "2026-11-24T14:41:20+0800",
+  "phase3_batch": "extractions/batch_20261124_143107",
+  "baseline_report": "evaluation/reports/phase3_after_corrected_20261124_143322.json",
+  "metrics": {
+    "coverage": 37,
+    "expected": 38,
+    "completeness": 0.9591,
+    "agreement": 0.9591,
+    "qc": {
+      "L2": 37,
+      "no_match": 1
+    }
+  },
+  "hashes": {
+    "server/extract.py": "cf471d8d99502b4d37886f224451bd65f11b6cac6a6d1e794ad5811aefce36e5",
+    "server/tasks.py": "ee2c43931626ee69cb749fda2830ff8e28ef3af9f2b5b3ad278927115acce6c4",
+    "server/provenance.py": "f8831aa6d1b3834051e7e49dcc2b457d4360884489a6a865150cbf748eb67689",
+    "server/skill_router.py": "229ea063f90c367a03f5e207952f987a88d14882432f088181218f50f92353a5",
+    "server/table_grid.py": "24dd8571b384b8fd4f1a296da5ee4aa787ff531f3d29076f0cb9811e36b835c1",
+    "server/vle_table_parser.py": "3de4e9f8cb16dbbb75c5e4e166752093ccd118e49bfa59624269b84eaa3818e1",
+    "server/units.py": "7501d5457c57a560a2193c427a79a2330a6f0952aad5a99477103ca1cccbe76a",
+    "evaluation/evaluate.py": "1c6e7d2660e5b58fe440e6035b435535ebbba1016310aeb867733964f39cdb20",
+    "evaluation/eval_set_v1.json": "fcf97eab0e0a974ca12a87bfcb659ce7bc717c973e2e95afb08d01572f5560aa",
+    "gold_standard_L2.json": "512884e4c215fb7600dcd1ef4d6ae9c4fa8225a63fa2ac4ba7cd543cfe066b21",
+    ".qoder/skills/amine-carbon-capture-literature-reader/SKILL.md": "6f09486e06105d33cb779a1978b676946055941de1035adf1a7c25f0ddc361c7"
+  },
+  "db_counts": {
+    "compound": 4,
+    "recipe": 16,
+    "source": 17,
+    "source_location": 61,
+    "test": 63,
+    "performance": 73
+  },
+  "qc_distribution": [
+    [
+      "L2",
+      "literature",
+      38
+    ],
+    [
+      "L3",
+      "literature",
+      10
+    ],
+    [
+      "L3",
+      "simulation",
+      15
+    ]
+  ],
+  "note": "Phase 3 frozen snapshot for Phase 4 comparisons; no git commit/tag created."
+}

@@ -1,0 +1,25 @@
+# Phase-2 Dependencies
+
+These are additive to `requirements.txt`. They are installed into the root
+`.venv`; `tools/.venv` remains the CDP environment.
+
+```text
+rapidocr-onnxruntime
+opencv-python
+numpy
+pypdfium2
+openpyxl
+python-docx
+playwright
+```
+
+Notes:
+
+- `rapidocr-onnxruntime` bundles OCR models and runs on ONNX Runtime; no system
+  Tesseract is required.
+- `opencv-python`/`numpy` are used by chart marker detection; RapidOCR also
+  depends on them.
+- `pypdfium2` renders PDF pages for OCR and chart extraction.
+- `openpyxl` and `python-docx` parse SI spreadsheets and Word documents.
+- `playwright` is only the Python client; **do not** run `playwright install`.
+  The project connects to the system Chrome/Edge CDP session on port 9222.

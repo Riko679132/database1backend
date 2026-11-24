@@ -1,0 +1,279 @@
+{
+  "label": "historical_fixture",
+  "created_at": "2026-11-24T14:03:40+0800",
+  "eval_set": "D:\\database1\\evaluation\\eval_set_v1.json",
+  "candidate": "D:\\database1\\evaluation\\historical_l2_candidate.jsonl",
+  "label_caveat": "Regression baseline only; human_verified=false for every sample.",
+  "candidate_meta": {
+    "batch_id": null,
+    "papers": 0,
+    "models": [],
+    "prompt_sha256": [],
+    "module_sets": []
+  },
+  "counts": {
+    "expected_samples": 38,
+    "matched": 38,
+    "unmatched": 0,
+    "candidate_records": 38,
+    "extra_candidate_records": 0,
+    "rejected_records": 0
+  },
+  "field_completeness": {
+    "overall": 1.0,
+    "present": 400,
+    "expected": 400,
+    "per_field": {
+      "conditions.co2_partial_kPa": {
+        "expected": 37,
+        "present": 37,
+        "within": 37,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.co2_vol_pct": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.initial_loading": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.temperature_K": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.total_pressure_kPa": {
+        "expected": 33,
+        "present": 33,
+        "within": 33,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "loadings.lean": {
+        "expected": 4,
+        "present": 4,
+        "within": 4,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "loadings.rich": {
+        "expected": 36,
+        "present": 36,
+        "within": 36,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.absorption_amount_volumetric": {
+        "expected": 1,
+        "present": 1,
+        "within": 1,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.absorption_rate_volumetric": {
+        "expected": 1,
+        "present": 1,
+        "within": 1,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.cyclic_capacity": {
+        "expected": 4,
+        "present": 4,
+        "within": 4,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.cyclic_capacity_volumetric": {
+        "expected": 1,
+        "present": 1,
+        "within": 1,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.equilibrium_loading": {
+        "expected": 28,
+        "present": 28,
+        "within": 28,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.initial_absorption_rate": {
+        "expected": 3,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.initial_desorption_rate": {
+        "expected": 3,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.pka": {
+        "expected": 1,
+        "present": 1,
+        "within": 1,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.regeneration_efficiency": {
+        "expected": 5,
+        "present": 5,
+        "within": 5,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "performance.regeneration_heat": {
+        "expected": 1,
+        "present": 1,
+        "within": 1,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.total_amine_wt": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.water_wt": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.wt_a": {
+        "expected": 38,
+        "present": 38,
+        "within": 38,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.wt_b": {
+        "expected": 14,
+        "present": 14,
+        "within": 14,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      }
+    }
+  },
+  "numeric_agreement": {
+    "overall": 1.0,
+    "within": 400,
+    "expected": 400
+  },
+  "recipe_closure": {
+    "complete": 38
+  },
+  "qc_outcomes": {
+    "L2": 38
+  },
+  "false_reject_l2": 0,
+  "false_accept_note": "The 38-record set contains only L2 positives; false-accept requires a negative eval set.",
+  "rejection_reasons": {
+    "historical_fixture": 38
+  },
+  "per_doi": {
+    "10.1016/j.apenergy.2016.03.043": {
+      "expected": 4,
+      "matched": 4,
+      "within": 36,
+      "fields": 36
+    },
+    "10.1016/j.ijggc.2016.12.018": {
+      "expected": 1,
+      "matched": 1,
+      "within": 12,
+      "fields": 12
+    },
+    "10.1016/j.jece.2024.112664": {
+      "expected": 3,
+      "matched": 3,
+      "within": 39,
+      "fields": 39
+    },
+    "10.1021/acs.iecr.9b00552": {
+      "expected": 1,
+      "matched": 1,
+      "within": 8,
+      "fields": 8
+    },
+    "10.1021/ie400825u": {
+      "expected": 1,
+      "matched": 1,
+      "within": 12,
+      "fields": 12
+    },
+    "10.1021/je00005a025": {
+      "expected": 27,
+      "matched": 27,
+      "within": 284,
+      "fields": 284
+    },
+    "10.1039/d6gc02196d": {
+      "expected": 1,
+      "matched": 1,
+      "within": 9,
+      "fields": 9
+    }
+  },
+  "failures": []
+}

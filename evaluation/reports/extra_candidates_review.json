@@ -1,0 +1,300 @@
+{
+  "batch": "D:/database1/extractions/batch_20261124_145027",
+  "extras": [
+    {
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "amine_a": "MEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": 100.0,
+      "co2_partial_kPa": null,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "regeneration_heat": -85.13
+      },
+      "qc_level": "L3",
+      "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "metric_key": "regeneration_heat"
+    },
+    {
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": 100.0,
+      "co2_partial_kPa": null,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "regeneration_heat": -52.51
+      },
+      "qc_level": "L3",
+      "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "metric_key": "regeneration_heat"
+    },
+    {
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "amine_a": "AMP",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": 100.0,
+      "co2_partial_kPa": null,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "regeneration_heat": -80.91
+      },
+      "qc_level": "L3",
+      "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "metric_key": "regeneration_heat"
+    },
+    {
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "amine_a": "PZ",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": 100.0,
+      "co2_partial_kPa": null,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "regeneration_heat": -80.58
+      },
+      "qc_level": "L3",
+      "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "metric_key": "regeneration_heat"
+    },
+    {
+      "doi": "10.1021/ie400825u",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": 100.0,
+      "co2_partial_kPa": 101.325,
+      "total_pressure_kPa": 101.325,
+      "metrics": {
+        "regeneration_heat": 58.5
+      },
+      "qc_level": "L3",
+      "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "metric_key": "regeneration_heat"
+    },
+    {
+      "doi": "10.1016/j.ijggc.2016.12.018",
+      "amine_a": "MEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 353.15,
+      "co2_vol_pct": 1.0,
+      "co2_partial_kPa": 1.0,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 0.28
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_initial_loading;llm_snapshot_unverified;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "additional MEA VLE point at 353 K; missing total pressure/initial loading",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/acs.iecr.9b00552",
+      "amine_a": "MEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": null,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": null,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "regeneration_heat": -83.24
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_temperature_K;test_co2_vol_pct;test_initial_loading;metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "metric_key": "regeneration_heat"
+    },
+    {
+      "doi": "10.1021/acs.iecr.9b00552",
+      "amine_a": "MEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": 15.0,
+      "co2_partial_kPa": null,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "co2_removal_efficiency": 99.4
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_initial_loading;llm_snapshot_unverified;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "pilot CO2 removal efficiency; missing initial loading/complete conditions",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/je00005a025",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": 208.5,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 0.919
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "VLE point outside the 40 C low-pressure target (high P or other temperature)",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/je00005a025",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": 455.0,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 0.99
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "VLE point outside the 40 C low-pressure target (high P or other temperature)",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/je00005a025",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": 834.0,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 1.016
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "VLE point outside the 40 C low-pressure target (high P or other temperature)",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/je00005a025",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": 1241.0,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 1.065
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "VLE point outside the 40 C low-pressure target (high P or other temperature)",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/je00005a025",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": 1593.0,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 1.082
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "VLE point outside the 40 C low-pressure target (high P or other temperature)",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/je00005a025",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 313.15,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": 1979.0,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 1.108
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "VLE point outside the 40 C low-pressure target (high P or other temperature)",
+      "metric_key": null
+    },
+    {
+      "doi": "10.1021/je00005a025",
+      "amine_a": "MDEA",
+      "amine_b": null,
+      "wt_a": 30.0,
+      "wt_b": null,
+      "temperature_K": 333.15,
+      "co2_vol_pct": null,
+      "co2_partial_kPa": 1.1,
+      "total_pressure_kPa": null,
+      "metrics": {
+        "equilibrium_loading": 0.189
+      },
+      "qc_level": "L3",
+      "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "label": "Valid L3",
+      "reason": "VLE point outside the 40 C low-pressure target (high P or other temperature)",
+      "metric_key": null
+    }
+  ],
+  "counts": {
+    "extras": 15,
+    "valid_l3": 9,
+    "insufficient_evidence": 6,
+    "pending_review": 0,
+    "negative_samples": 28,
+    "boundary_samples": 5,
+    "insufficient_samples": 9,
+    "model_samples": 3
+  }
+}

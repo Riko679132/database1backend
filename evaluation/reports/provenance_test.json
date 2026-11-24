@@ -1,0 +1,165 @@
+{
+  "created_at": "2026-11-24T22:54:16+0800",
+  "ok": true,
+  "batch": "D:\\database1\\evaluation\\artifacts\\b_flow\\batches\\batch_20261124_225303",
+  "checks": [
+    {
+      "name": "imported_tests",
+      "ok": true,
+      "tests": 8,
+      "raw_records": 8,
+      "import_output": "导入完成： {'inserted': 8, 'skipped': 0, 'failed': 0, 'compound_new': 4, 'recipe_new': 4, 'source_new': 1, 'source_location_new': 8, 'test_new': 8, 'performance_new': 8} 批次： provenance_test\n"
+    },
+    {
+      "name": "qc_record_initialized",
+      "ok": true,
+      "qc_rows": 8
+    },
+    {
+      "name": "excerpt_path_set",
+      "ok": true,
+      "with_path": 8
+    },
+    {
+      "name": "sidecar_hashes",
+      "ok": true,
+      "sidecars": 8
+    },
+    {
+      "name": "same_paper_records_not_crosslinked",
+      "ok": true,
+      "matched": 8
+    },
+    {
+      "name": "distinct_sidecars_per_record",
+      "ok": true,
+      "groups": 1
+    },
+    {
+      "name": "trace_new_records",
+      "ok": true,
+      "traced": [
+        {
+          "test_id": 1,
+          "source": "sidecar",
+          "chars": 134
+        },
+        {
+          "test_id": 2,
+          "source": "sidecar",
+          "chars": 141
+        },
+        {
+          "test_id": 3,
+          "source": "sidecar",
+          "chars": 145
+        }
+      ]
+    },
+    {
+      "name": "backup_reload",
+      "ok": true
+    },
+    {
+      "name": "corrupt_sidecar_reported",
+      "ok": true,
+      "warnings": [
+        "excerpt sidecar hash_mismatch: D:\\database1\\evaluation\\artifacts\\provenance\\run\\corrupt.json"
+      ],
+      "source": "snapshot"
+    },
+    {
+      "name": "missing_sidecar_reported",
+      "ok": true,
+      "warnings": [
+        "excerpt sidecar missing: D:\\database1\\evaluation\\artifacts\\provenance\\run\\missing.json"
+      ],
+      "source": "snapshot"
+    },
+    {
+      "name": "legacy_snapshot_fallback",
+      "ok": true,
+      "legacy": {
+        "3": {
+          "source": "sidecar",
+          "match": null,
+          "chars": 622,
+          "warnings": []
+        },
+        "24": {
+          "source": "snapshot",
+          "match": "whitelist_row",
+          "chars": 148,
+          "warnings": [
+            "source_location.excerpt_path is NULL (legacy record)"
+          ]
+        },
+        "27": {
+          "source": "snapshot",
+          "match": "whitelist_row",
+          "chars": 127,
+          "warnings": [
+            "source_location.excerpt_path is NULL (legacy record)"
+          ]
+        },
+        "31": {
+          "source": "snapshot",
+          "match": "table_row",
+          "chars": 95,
+          "warnings": [
+            "source_location.excerpt_path is NULL (legacy record)"
+          ]
+        }
+      }
+    },
+    {
+      "name": "all_L2_traceable",
+      "ok": true,
+      "l2": 38,
+      "resolved_l2": 38,
+      "sources_l2": {
+        "sidecar": 1,
+        "snapshot": 37
+      }
+    },
+    {
+      "name": "all_tests_traceable",
+      "ok": true,
+      "tests": 63,
+      "resolved": 63,
+      "sources": {
+        "batch_jsonl": 25,
+        "sidecar": 1,
+        "snapshot": 37
+      }
+    },
+    {
+      "name": "qc_record_backfill_temp",
+      "ok": true,
+      "dry_count": 8,
+      "qc_rows": 8,
+      "unverified": 8
+    },
+    {
+      "name": "human_review_interface_temp",
+      "ok": true,
+      "qc": [
+        1,
+        "test_reviewer"
+      ],
+      "review_file": true
+    },
+    {
+      "name": "excerpt_backfill_main_copy",
+      "ok": true,
+      "paths": 60,
+      "sidecars": 59,
+      "main_db_unchanged": true
+    },
+    {
+      "name": "export_fields",
+      "ok": true,
+      "l2_records": 4
+    }
+  ]
+}

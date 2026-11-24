@@ -1,0 +1,551 @@
+{
+  "negative_version": "v2",
+  "created_at": "2026-11-24T21:48:04+0800",
+  "label_policy": {
+    "Negative": "clearly not eligible; any accepted L2/L3 is a false accept",
+    "Out of Scope": "outside the research boundary; any accepted L2/L3 is a false accept",
+    "Duplicate": "same data already represented; accepted L2/L3 is a false accept",
+    "Insufficient Evidence": "data are valid research content but missing required evidence; L2 is a false accept, L3 is an acceptable reference",
+    "Model-derived": "model/simulation output; L2 is a false accept, L3 is acceptable",
+    "Boundary": "valid VLE data outside the developed profile range; absence or L4 is a false reject, L3 is acceptable",
+    "Pending Review": "excluded from false-accept metrics until human review",
+    "Valid L3": "real data but outside the L2 target; not a negative"
+  },
+  "samples": [
+    {
+      "sample_id": "EXTRA-01",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "candidate_key": [
+        "10.1016/j.apenergy.2016.03.043",
+        "MEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        null,
+        "regeneration_heat",
+        -85.13
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption"
+      }
+    },
+    {
+      "sample_id": "EXTRA-02",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "candidate_key": [
+        "10.1016/j.apenergy.2016.03.043",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        null,
+        "regeneration_heat",
+        -52.51
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption"
+      }
+    },
+    {
+      "sample_id": "EXTRA-03",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "candidate_key": [
+        "10.1016/j.apenergy.2016.03.043",
+        "AMP",
+        null,
+        30.0,
+        null,
+        313.15,
+        null,
+        "regeneration_heat",
+        -80.91
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption"
+      }
+    },
+    {
+      "sample_id": "EXTRA-04",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "candidate_key": [
+        "10.1016/j.apenergy.2016.03.043",
+        "PZ",
+        null,
+        30.0,
+        null,
+        313.15,
+        null,
+        "regeneration_heat",
+        -80.58
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption"
+      }
+    },
+    {
+      "sample_id": "EXTRA-05",
+      "doi": "10.1021/ie400825u",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "candidate_key": [
+        "10.1021/ie400825u",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        101.325,
+        "regeneration_heat",
+        58.5
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption"
+      }
+    },
+    {
+      "sample_id": "EXTRA-06",
+      "doi": "10.1021/acs.iecr.9b00552",
+      "label": "Insufficient Evidence",
+      "reason": "regeneration_heat label but unit/sign indicate heat of absorption/reaction (kJ/mol), not regeneration heat",
+      "candidate_key": [
+        "10.1021/acs.iecr.9b00552",
+        "MEA",
+        null,
+        30.0,
+        null,
+        null,
+        null,
+        "regeneration_heat",
+        -83.24
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "test_temperature_K;test_co2_vol_pct;test_initial_loading;metric_semantics_downgrade;metric_definition_mismatch_regeneration_heat_is_heat_of_absorption"
+      }
+    },
+    {
+      "sample_id": "L4-07",
+      "doi": "10.1016/j.ijggc.2016.12.018",
+      "label": "Duplicate",
+      "reason": "L4 rejected record from a DOI that already has a valid L2 MEA record; wt/mass balance missing",
+      "candidate_key": [
+        "10.1016/j.ijggc.2016.12.018",
+        "MEA",
+        null,
+        null,
+        null,
+        298.15,
+        null,
+        null,
+        null
+      ],
+      "match_by_doi": true,
+      "prefer_qc": "L4",
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L4",
+        "qc_reason": "concentration_out_of_range;mass_balance;test_co2_vol_pct;test_initial_loading"
+      }
+    },
+    {
+      "sample_id": "OOS-08",
+      "doi": "10.1039/d5ta10129h",
+      "label": "Out of Scope",
+      "reason": "综述/二次数据, 数值均为转引他文, 违反'仅取原始测量'原则; 可作为引文挖掘线索定位原始文献",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "ledger": "data/raw_pdfs/extraction_todo_assessment.csv"
+      }
+    },
+    {
+      "sample_id": "OOS-09",
+      "doi": "10.1021/jacs.6c06590",
+      "label": "Out of Scope",
+      "reason": "主体系明确非水(无水添加); 仅含 MEA/吗啉对照, 需二次核查对照是否为水性, 潜在增补价值有限",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "ledger": "data/raw_pdfs/extraction_todo_assessment.csv"
+      }
+    },
+    {
+      "sample_id": "OOS-10",
+      "doi": "10.1016/j.fuel.2025.134712",
+      "label": "Out of Scope",
+      "reason": "标题即 non-aqueous amines; 研究对象为喷雾雾化工艺(闪沸/液滴), 无平衡态吸收性能; 双重边界外",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "ledger": "data/raw_pdfs/extraction_todo_assessment.csv"
+      }
+    },
+    {
+      "sample_id": "OOS-11",
+      "doi": "10.1039/d4gc05489j",
+      "label": "Out of Scope",
+      "reason": "固体水凝胶吸附剂(amine carriers), 非水性胺溶液吸收; 属吸附/材料体系, 研究边界外",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "ledger": "data/raw_pdfs/extraction_todo_assessment.csv"
+      }
+    },
+    {
+      "sample_id": "OOS-12",
+      "doi": "10.1007/s43153-023-00348-5",
+      "label": "Out of Scope",
+      "reason": "氨基酸为盐形态(salt_flag); PDF 实为预印本(DOI 10.21203/rs.3.rs-1724921/v1)未经同行评审; DEA/ARG 均不在白名单",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "ledger": "data/raw_pdfs/extraction_todo_assessment.csv"
+      }
+    },
+    {
+      "sample_id": "OOS-13",
+      "doi": "10.25130/tjes.31.1.22",
+      "label": "Out of Scope",
+      "reason": "深共熔溶剂(DES)体系=边界外; 文中 MEA 仅作传质系数对照(0.152 mol/bar·L·min), 无浓度/CO2分压/loading, 不可入库",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "ledger": "data/raw_pdfs/extraction_todo_assessment.csv"
+      }
+    },
+    {
+      "sample_id": "OOS-PROC-14",
+      "doi": "10.1021/acs.iecr.1c04123",
+      "label": "Out of Scope",
+      "reason": "1 M PZ/MEA/MDEA/AMP blends; mol/L without density; recipe cannot close",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "processed_batch": "batch_20261124_145418",
+      "human_verified": false,
+      "evidence": {
+        "batch": "batch_20261124_145418",
+        "records": 0
+      }
+    },
+    {
+      "sample_id": "OOS-PROC-15",
+      "doi": "10.1155/2022/6278342",
+      "label": "Out of Scope",
+      "reason": "20 wt% MEA VLE only in figures; data embargo; no table",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "processed_batch": "batch_20261124_145418",
+      "human_verified": false,
+      "evidence": {
+        "batch": "batch_20261124_145418",
+        "records": 0
+      }
+    },
+    {
+      "sample_id": "OOS-PROC-16",
+      "doi": "10.1021/acs.iecr.4c03980",
+      "label": "Out of Scope",
+      "reason": "iron solubility in MEA; no amine absorption performance data",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "processed_batch": "batch_20261124_145418",
+      "human_verified": false,
+      "evidence": {
+        "batch": "batch_20261124_145418",
+        "records": 0
+      }
+    },
+    {
+      "sample_id": "OOS-PROC-17",
+      "doi": "10.1016/j.ces.2017.02.036",
+      "label": "Out of Scope",
+      "reason": "2-5 M amine blends; no wt%/density; recipe cannot close",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "processed_batch": "batch_20261124_145418",
+      "human_verified": false,
+      "evidence": {
+        "batch": "batch_20261124_145418",
+        "records": 0
+      }
+    },
+    {
+      "sample_id": "INC-18",
+      "doi": "10.1016/j.ijggc.2016.12.018",
+      "label": "Insufficient Evidence",
+      "reason": "actual batch record missing required field(s): test_initial_loading;llm_snapshot_unverified;missing_initial_loading;required_evidence_unknown_or_assumed",
+      "candidate_key": [
+        "10.1016/j.ijggc.2016.12.018",
+        "MEA",
+        null,
+        30.0,
+        null,
+        353.15,
+        1.0,
+        "equilibrium_loading",
+        0.28
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "batch": "batch_20261124_145027"
+      }
+    },
+    {
+      "sample_id": "INC-19",
+      "doi": "10.1021/acs.iecr.9b00552",
+      "label": "Insufficient Evidence",
+      "reason": "actual batch record missing required field(s): test_temperature_K;test_co2_vol_pct;test_initial_loading;metric_semantics_downgrade",
+      "candidate_key": [
+        "10.1021/acs.iecr.9b00552",
+        "MEA",
+        null,
+        30.0,
+        null,
+        null,
+        null,
+        "regeneration_heat",
+        -83.24
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "batch": "batch_20261124_145027"
+      }
+    },
+    {
+      "sample_id": "INC-20",
+      "doi": "10.1021/je00005a025",
+      "label": "Insufficient Evidence",
+      "reason": "actual batch record missing required field(s): test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct",
+      "candidate_key": [
+        "10.1021/je00005a025",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        208.5,
+        "equilibrium_loading",
+        0.919
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "batch": "batch_20261124_145027"
+      }
+    },
+    {
+      "sample_id": "SIM-21",
+      "doi": "10.1016/j.ces.2026.124685",
+      "label": "Model-derived",
+      "reason": "actual simulation record from a historical batch; must stay L3",
+      "candidate_key": [
+        "10.1016/j.ces.2026.124685",
+        "MEA",
+        null,
+        60.0,
+        null,
+        309.5,
+        null,
+        "cost_per_tonne_co2",
+        26.9
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "batch": "20261027_04",
+        "test_origin": "simulation"
+      }
+    },
+    {
+      "sample_id": "SIM-22",
+      "doi": "10.1016/j.seppur.2026.139992",
+      "label": "Model-derived",
+      "reason": "actual simulation record from a historical batch; must stay L3",
+      "candidate_key": [
+        "10.1016/j.seppur.2026.139992",
+        "MEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        null,
+        "cost_per_tonne_co2",
+        97.8
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "batch": "20261027_05",
+        "test_origin": "simulation"
+      }
+    },
+    {
+      "sample_id": "BND-01",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=208.5 kPa); valid data must remain available as L3",
+      "candidate_key": [
+        "10.1021/je00005a025",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        208.5,
+        null,
+        null
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed"
+      }
+    },
+    {
+      "sample_id": "BND-02",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=455.0 kPa); valid data must remain available as L3",
+      "candidate_key": [
+        "10.1021/je00005a025",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        455.0,
+        null,
+        null
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed"
+      }
+    },
+    {
+      "sample_id": "BND-03",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=834.0 kPa); valid data must remain available as L3",
+      "candidate_key": [
+        "10.1021/je00005a025",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        834.0,
+        null,
+        null
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed"
+      }
+    },
+    {
+      "sample_id": "BND-04",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=1241.0 kPa); valid data must remain available as L3",
+      "candidate_key": [
+        "10.1021/je00005a025",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        1241.0,
+        null,
+        null
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed"
+      }
+    },
+    {
+      "sample_id": "BND-05",
+      "doi": "10.1021/je00005a025",
+      "label": "Boundary",
+      "reason": "VLE point outside the 40 C / <=180 kPa profile (T=313.15 K, P_CO2=1593.0 kPa); valid data must remain available as L3",
+      "candidate_key": [
+        "10.1021/je00005a025",
+        "MDEA",
+        null,
+        30.0,
+        null,
+        313.15,
+        1593.0,
+        null,
+        null
+      ],
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "qc_level": "L3",
+        "qc_reason": "test_co2_vol_pct;test_initial_loading;llm_snapshot_unverified;missing_co2_vol_pct;missing_initial_loading;required_evidence_unknown_or_assumed"
+      }
+    },
+    {
+      "sample_id": "MODEL-28",
+      "doi": "10.1016/j.ces.2026.124685",
+      "label": "Model-derived",
+      "reason": "simulation/modeling paper; not experimental L2 data",
+      "candidate_key": null,
+      "match_by_doi": true,
+      "human_verified": false,
+      "evidence": {
+        "source": "triage DONE/simulation record"
+      }
+    }
+  ],
+  "human_verified": false
+}

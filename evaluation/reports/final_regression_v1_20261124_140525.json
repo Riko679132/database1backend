@@ -1,0 +1,943 @@
+{
+  "label": "final_regression_v1",
+  "created_at": "2026-11-24T14:05:25+0800",
+  "eval_set": "D:\\database1\\evaluation\\eval_set_v1.json",
+  "candidate": "D:\\database1\\extractions\\batch_20261124_140349",
+  "label_caveat": "Regression baseline only; human_verified=false for every sample.",
+  "candidate_meta": {
+    "batch_id": "batch_20261124_140349",
+    "papers": 7,
+    "models": [
+      "deepseek-chat"
+    ],
+    "prompt_sha256": [
+      "12e3d313f520f83c3d6dea9c061bbf6b70471f45cbd16bb435b4343522167e50",
+      "3266a089c752eece445752e51989e6c394daa6df63a731c873be65eb2eaf91b0",
+      "4884c196011a91b523f7a1a9e770ae9a9c5704823cb5a74255bfdcb3a5f24ae5",
+      "4aa53b7436625cbec45b487b68fc17d5e72d168c4ae96195cd42a5faf3a71ef6",
+      "99867e826db5a40e20fc215aa938a8dc0a53a38597e87f1b59f7e5bf22cee82b",
+      "bea940ffc22d569e267c0b5d6d7111cc4ec61dcb67c84dae64c89673688e80c3",
+      "c3069bdeec655b312d2e462d838fc889080819a86758d2cd0a63e3feb83f61d0"
+    ],
+    "module_sets": [
+      [
+        "amine_properties",
+        "amine_chemistry",
+        "co2_equilibrium",
+        "mixed_amine_systems"
+      ],
+      [
+        "amine_properties",
+        "amine_chemistry",
+        "experimental_methods",
+        "co2_equilibrium"
+      ],
+      [
+        "amine_properties",
+        "amine_chemistry",
+        "mixed_amine_systems",
+        "co2_equilibrium"
+      ],
+      [
+        "amine_properties",
+        "co2_equilibrium",
+        "amine_chemistry",
+        "mixed_amine_systems"
+      ],
+      [
+        "amine_properties",
+        "co2_equilibrium",
+        "mixed_amine_systems",
+        "amine_chemistry"
+      ],
+      [
+        "amine_properties",
+        "co2_equilibrium",
+        "mixed_amine_systems",
+        "experimental_methods"
+      ],
+      [
+        "amine_properties",
+        "mixed_amine_systems",
+        "co2_equilibrium",
+        "physical_properties"
+      ]
+    ]
+  },
+  "counts": {
+    "expected_samples": 38,
+    "matched": 22,
+    "unmatched": 16,
+    "candidate_records": 30,
+    "extra_candidate_records": 8,
+    "rejected_records": 1
+  },
+  "field_completeness": {
+    "overall": 0.7665,
+    "present": 174,
+    "expected": 227,
+    "per_field": {
+      "conditions.co2_partial_kPa": {
+        "expected": 21,
+        "present": 13,
+        "within": 7,
+        "outside": 6,
+        "missing": 8,
+        "completeness": 0.619,
+        "agreement": 0.3333
+      },
+      "conditions.co2_vol_pct": {
+        "expected": 22,
+        "present": 10,
+        "within": 10,
+        "outside": 0,
+        "missing": 12,
+        "completeness": 0.4545,
+        "agreement": 0.4545
+      },
+      "conditions.initial_loading": {
+        "expected": 22,
+        "present": 10,
+        "within": 10,
+        "outside": 0,
+        "missing": 12,
+        "completeness": 0.4545,
+        "agreement": 0.4545
+      },
+      "conditions.temperature_K": {
+        "expected": 22,
+        "present": 22,
+        "within": 22,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "conditions.total_pressure_kPa": {
+        "expected": 18,
+        "present": 4,
+        "within": 4,
+        "outside": 0,
+        "missing": 14,
+        "completeness": 0.2222,
+        "agreement": 0.2222
+      },
+      "loadings.lean": {
+        "expected": 4,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.75,
+        "agreement": 0.75
+      },
+      "loadings.rich": {
+        "expected": 21,
+        "present": 21,
+        "within": 15,
+        "outside": 6,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 0.7143
+      },
+      "performance.absorption_amount_volumetric": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.absorption_rate_volumetric": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.cyclic_capacity": {
+        "expected": 4,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.75,
+        "agreement": 0.75
+      },
+      "performance.cyclic_capacity_volumetric": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.equilibrium_loading": {
+        "expected": 13,
+        "present": 13,
+        "within": 7,
+        "outside": 6,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 0.5385
+      },
+      "performance.initial_absorption_rate": {
+        "expected": 3,
+        "present": 3,
+        "within": 0,
+        "outside": 3,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 0.0
+      },
+      "performance.initial_desorption_rate": {
+        "expected": 3,
+        "present": 3,
+        "within": 0,
+        "outside": 3,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 0.0
+      },
+      "performance.pka": {
+        "expected": 1,
+        "present": 0,
+        "within": 0,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.0,
+        "agreement": 0.0
+      },
+      "performance.regeneration_efficiency": {
+        "expected": 4,
+        "present": 3,
+        "within": 3,
+        "outside": 0,
+        "missing": 1,
+        "completeness": 0.75,
+        "agreement": 0.75
+      },
+      "recipe.total_amine_wt": {
+        "expected": 22,
+        "present": 22,
+        "within": 22,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.water_wt": {
+        "expected": 22,
+        "present": 22,
+        "within": 22,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      },
+      "recipe.wt_a": {
+        "expected": 22,
+        "present": 22,
+        "within": 22,
+        "outside": 0,
+        "missing": 0,
+        "completeness": 1.0,
+        "agreement": 1.0
+      }
+    }
+  },
+  "numeric_agreement": {
+    "overall": 0.6608,
+    "within": 150,
+    "expected": 227
+  },
+  "recipe_closure": {
+    "complete": 22
+  },
+  "qc_outcomes": {
+    "L2": 10,
+    "L3": 12,
+    "no_match": 16
+  },
+  "false_reject_l2": 28,
+  "false_accept_note": "The 38-record set contains only L2 positives; false-accept requires a negative eval set.",
+  "rejection_reasons": {
+    "test_co2_vol_pct": 12,
+    "test_initial_loading": 12,
+    "llm_snapshot_unverified": 12,
+    "missing_co2_vol_pct": 12,
+    "missing_initial_loading": 12,
+    "required_evidence_unknown_or_assumed": 12,
+    "llm_snapshot_machine_verified": 10,
+    "human_audit_pending": 10,
+    "temperature_K:Explicit": 10,
+    "co2_vol_pct:Explicit": 10,
+    "initial_loading:Contextual": 10,
+    "rejected:concentration_out_of_range": 1,
+    "rejected:mass_balance": 1,
+    "rejected:test_co2_vol_pct": 1,
+    "rejected:test_initial_loading": 1
+  },
+  "per_doi": {
+    "10.1016/j.apenergy.2016.03.043": {
+      "expected": 4,
+      "matched": 4,
+      "within": 32,
+      "fields": 36
+    },
+    "10.1016/j.ijggc.2016.12.018": {
+      "expected": 1,
+      "matched": 1,
+      "within": 8,
+      "fields": 12
+    },
+    "10.1016/j.jece.2024.112664": {
+      "expected": 3,
+      "matched": 3,
+      "within": 30,
+      "fields": 39
+    },
+    "10.1021/acs.iecr.9b00552": {
+      "expected": 1,
+      "matched": 1,
+      "within": 8,
+      "fields": 8
+    },
+    "10.1021/ie400825u": {
+      "expected": 1,
+      "matched": 1,
+      "within": 6,
+      "fields": 12
+    },
+    "10.1021/je00005a025": {
+      "expected": 27,
+      "matched": 12,
+      "within": 66,
+      "fields": 120
+    },
+    "10.1039/d6gc02196d": {
+      "expected": 1,
+      "matched": 0,
+      "within": 0,
+      "fields": 0
+    }
+  },
+  "failures": [
+    {
+      "sample_id": "24",
+      "doi": "10.1016/j.jece.2024.112664",
+      "match_score": 6.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": [
+        "performance.initial_absorption_rate",
+        "performance.initial_desorption_rate"
+      ]
+    },
+    {
+      "sample_id": "25",
+      "doi": "10.1016/j.jece.2024.112664",
+      "match_score": 6.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": [
+        "performance.initial_absorption_rate",
+        "performance.initial_desorption_rate"
+      ]
+    },
+    {
+      "sample_id": "26",
+      "doi": "10.1016/j.jece.2024.112664",
+      "match_score": 6.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": [
+        "performance.initial_absorption_rate",
+        "performance.initial_desorption_rate"
+      ]
+    },
+    {
+      "sample_id": "27",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "match_score": 2.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "28",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "match_score": 2.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "29",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "match_score": 2.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "30",
+      "doi": "10.1016/j.apenergy.2016.03.043",
+      "match_score": 2.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "31",
+      "doi": "10.1021/je00005a025",
+      "match_score": 4.0,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "32",
+      "doi": "10.1021/je00005a025",
+      "match_score": 4.0,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "33",
+      "doi": "10.1021/je00005a025",
+      "match_score": 4.0,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "34",
+      "doi": "10.1021/je00005a025",
+      "match_score": 4.0,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "35",
+      "doi": "10.1021/je00005a025",
+      "match_score": 4.0,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "36",
+      "doi": "10.1021/je00005a025",
+      "match_score": 4.0,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "51",
+      "doi": "10.1021/je00005a025",
+      "match_score": 35.902,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": [
+        "conditions.co2_partial_kPa",
+        "loadings.rich",
+        "performance.equilibrium_loading"
+      ]
+    },
+    {
+      "sample_id": "52",
+      "doi": "10.1021/je00005a025",
+      "match_score": 35.992,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": [
+        "conditions.co2_partial_kPa",
+        "loadings.rich",
+        "performance.equilibrium_loading"
+      ]
+    },
+    {
+      "sample_id": "53",
+      "doi": "10.1021/je00005a025",
+      "match_score": 35.969,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": [
+        "conditions.co2_partial_kPa",
+        "loadings.rich",
+        "performance.equilibrium_loading"
+      ]
+    },
+    {
+      "sample_id": "54",
+      "doi": "10.1021/je00005a025",
+      "match_score": 35.959,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": [
+        "conditions.co2_partial_kPa",
+        "loadings.rich",
+        "performance.equilibrium_loading"
+      ]
+    },
+    {
+      "sample_id": "55",
+      "doi": "10.1021/je00005a025",
+      "match_score": 35.796,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": [
+        "conditions.co2_partial_kPa",
+        "loadings.rich",
+        "performance.equilibrium_loading"
+      ]
+    },
+    {
+      "sample_id": "56",
+      "doi": "10.1021/je00005a025",
+      "match_score": 35.731,
+      "qc_level": "L3",
+      "missing_fields": [
+        "conditions.co2_vol_pct",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading"
+      ],
+      "outside_tolerance": [
+        "conditions.co2_partial_kPa",
+        "loadings.rich",
+        "performance.equilibrium_loading"
+      ]
+    },
+    {
+      "sample_id": "58",
+      "doi": "10.1016/j.ijggc.2016.12.018",
+      "match_score": 10.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.total_pressure_kPa",
+        "loadings.lean",
+        "performance.cyclic_capacity",
+        "performance.regeneration_efficiency"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "59",
+      "doi": "10.1021/ie400825u",
+      "match_score": 22.0,
+      "qc_level": "L2",
+      "missing_fields": [
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "performance.absorption_rate_volumetric",
+        "performance.absorption_amount_volumetric",
+        "performance.cyclic_capacity_volumetric",
+        "performance.pka"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "3",
+      "doi": "10.1039/d6gc02196d",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.regeneration_efficiency",
+        "performance.regeneration_heat"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "37",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "38",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "39",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "40",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "41",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "42",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "43",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "44",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "45",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "46",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "47",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "48",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "49",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "50",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    },
+    {
+      "sample_id": "57",
+      "doi": "10.1021/je00005a025",
+      "match_score": null,
+      "qc_level": null,
+      "missing_fields": [
+        "recipe.wt_a",
+        "recipe.wt_b",
+        "recipe.water_wt",
+        "recipe.total_amine_wt",
+        "conditions.temperature_K",
+        "conditions.co2_vol_pct",
+        "conditions.co2_partial_kPa",
+        "conditions.total_pressure_kPa",
+        "conditions.initial_loading",
+        "loadings.rich",
+        "loadings.lean",
+        "performance.equilibrium_loading"
+      ],
+      "outside_tolerance": []
+    }
+  ]
+}

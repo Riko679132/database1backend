@@ -22,6 +22,19 @@ def _cfg(override: dict | None = None) -> dict:
     return cfg
 
 
+def config_snapshot(override: dict | None = None) -> dict:
+    """Non-secret model configuration for the extraction snapshot."""
+    cfg = settings.ai_config()
+    if override:
+        cfg.update({k: v for k, v in override.items() if v})
+    return {
+        "provider": cfg.get("provider"),
+        "base_url": cfg.get("base_url"),
+        "model": cfg.get("model"),
+        "api_key_set": bool(cfg.get("api_key")),
+    }
+
+
 def _redact(text: str, secret: str) -> str:
     if secret and secret in text:
         text = text.replace(secret, "sk-***")

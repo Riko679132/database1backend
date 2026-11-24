@@ -1,0 +1,105 @@
+{
+  "created_at": "2026-11-24T21:46:31+0800",
+  "manifest_version": "1.0",
+  "ok": true,
+  "checks": [
+    {
+      "name": "build_SI_paper",
+      "ok": true,
+      "detail": {
+        "paper_id": "doi:10.1021/acs.iecr.4c03980",
+        "doi_status": "present",
+        "pdf_sha256": "119aaf3d99e00082",
+        "si_status": "present",
+        "si_files": 1,
+        "errors": []
+      }
+    },
+    {
+      "name": "load_SI_text",
+      "ok": true,
+      "detail": {
+        "chars": 4891,
+        "parsed_files": 1
+      }
+    },
+    {
+      "name": "build_no_SI_paper",
+      "ok": true,
+      "detail": {
+        "paper_id": "doi:10.1021/je00005a025",
+        "si_status": "missing",
+        "errors": []
+      }
+    },
+    {
+      "name": "reject_pdf_hash_mismatch",
+      "ok": true,
+      "detail": {
+        "errors": [
+          "pdf.sha256 mismatch: expected 0000000000000000000000000000000000000000000000000000000000000000, got 119aaf3d99e000826e42f88c8242a1ea5e6860071fb4794c075196c2a82d202f"
+        ]
+      }
+    },
+    {
+      "name": "reject_SI_hash_mismatch",
+      "ok": true,
+      "detail": {
+        "errors": [
+          "si.sha256 mismatch: data/raw_si/10.1021_acs.iecr.4c03980/si_01.pdf"
+        ]
+      }
+    },
+    {
+      "name": "reject_present_DOI_without_value",
+      "ok": true,
+      "detail": {
+        "errors": [
+          "doi.value invalid for present status: None",
+          "doi.status present but value is empty"
+        ]
+      }
+    },
+    {
+      "name": "missing_DOI_allowed",
+      "ok": true,
+      "detail": {
+        "paper_id": "pdf:8558972992c38f88",
+        "doi": {
+          "value": null,
+          "status": "missing",
+          "source": null
+        },
+        "warnings": [
+          "DOI could not be established from A metadata or filename"
+        ]
+      }
+    },
+    {
+      "name": "load_stored_manifest",
+      "ok": true,
+      "detail": {
+        "source": "stored"
+      }
+    },
+    {
+      "name": "load_all_pdfs",
+      "ok": true,
+      "detail": {
+        "pdfs": 29,
+        "legacy": 0,
+        "stored": 29
+      }
+    },
+    {
+      "name": "legacy_manifest_fallback",
+      "ok": true,
+      "detail": {
+        "source": "legacy",
+        "warnings": [
+          "No stored manifest found; generated a legacy manifest for this PDF"
+        ]
+      }
+    }
+  ]
+}

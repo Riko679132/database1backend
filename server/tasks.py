@@ -12,7 +12,18 @@ from pathlib import Path
 import requests
 import yaml
 
-from . import extract, settings
+from . import (
+    condition_profile,
+    excerpt_store,
+    extract,
+    ocr_gate,
+    paper_manifest,
+    provenance,
+    reasoning,
+    reference_case_parser,
+    settings,
+    vle_table_parser,
+)
 from .runner import Run, run_script
 from .settings import ROOT
 
@@ -135,6 +146,125 @@ def _pdf_names() -> set[str]:
 
 def _sanitize_doi(doi: str) -> str:
     return re.sub(r"[^\w.\-]+", "_", doi).strip("_")[:120]
+
+
+def _record_key(rec: dict) -> tuple:
+    r = rec.get("recipe") or {}
+    t = rec.get("test") or {}
+    a = r.get("amine_a") or {}
+    b = r.get("amine_b") or {}
+    return (
+        (rec.get("source") or {}).get("doi"),
+        a.get("standard_name"),
+        b.get("standard_name"),
+        r.get("wt_a"),
+        r.get("wt_b"),
+        t.get("temperature_K"),
+        t.get("co2_partial_kPa"),
+        tuple(sorted(
+            (p.get("metric_name"), round(float(p.get("value") or 0), 6))
+            for p in rec.get("performance") or []
+        )),
+    )
+
+
+def _loading_of(rec: dict) -> float | None:
+    for perf in rec.get("performance") or []:
+        if perf.get("metric_name") == "equilibrium_loading" and perf.get("value") is not None:
+            return float(perf["value"])
+    test = rec.get("test") or {}
+    for key in ("rich_loading", "lean_loading"):
+        if test.get(key) is not None:
+            return float(test[key])
+    return None
+
+
+def _same_system(a: dict, b: dict) -> bool:
+    ra, rb = a.get("recipe") or {}, b.get("recipe") or {}
+    aa, ab = ra.get("amine_a") or {}, rb.get("amine_a") or {}
+    if str(aa.get("standard_name") or "").lower() != str(ab.get("standard_name") or "").lower():
+        return False
+    if ra.get("wt_a") is None or rb.get("wt_a") is None:
+        return False
+    if abs(float(ra["wt_a"]) - float(rb["wt_a"])) > 0.2:
+        return False
+    ta, tb = a.get("test") or {}, b.get("test") or {}
+    if ta.get("temperature_K") is None or tb.get("temperature_K") is None:
+        return False
+    return abs(float(ta["temperature_K"]) - float(tb["temperature_K"])) <= 0.1
+
+
+def _is_vertical_duplicate(candidate: dict, existing: list[tuple]) -> bool:
+    for _, rec, _, _ in existing:
+        if not _same_system(candidate, rec):
+            continue
+        pa = (candidate.get("test") or {}).get("co2_partial_kPa")
+        pb = (rec.get("test") or {}).get("co2_partial_kPa")
+        la, lb = _loading_of(candidate), _loading_of(rec)
+        if pa is not None and pb is not None and abs(float(pa) - float(pb)) > 1.0:
+            continue
+        if la is not None and lb is not None and abs(la - lb) <= 0.02:
+            return True
+        if pa is not None and pb is not None and abs(float(pa) - float(pb)) <= 1.0 and la is None and lb is None:
+            return True
+    return False
+
+
+def _finalize_pair(
+    raw: dict,
+    rec: dict,
+    norm_text: str,
+    *,
+    context: dict,
+    modules: list[dict],
+) -> tuple[dict, dict, dict, dict]:
+    verification = provenance.verify_record(raw, rec, norm_text)
+    level, reason = provenance.decide_qc(rec, verification)
+    rec["qc"] = {"qc_level": level, "qc_reason": reason}
+    issues = reasoning.consistency_issues(raw, rec)
+    if issues:
+        reasoning.apply_consistency(rec, issues)
+    trace = reasoning.trace_record(
+        raw, rec, verification, context=context, modules=modules
+    )
+    return raw, rec, verification, trace
+
+
+def _load_si(pdf: Path, manifest: dict | None = None) -> tuple[str | None, dict | None]:
+    """Load the A-stage SI handoff through the validated manifest."""
+    if manifest is not None:
+        return paper_manifest.si_text(manifest)
+    doi = extract.doi_from_filename(pdf)
+    if not doi:
+        return None, None
+    base = ROOT / "data" / "raw_si" / _sanitize_doi(doi)
+    manifest_path = base / "si_manifest.json"
+    if not manifest_path.exists():
+        return None, {"status": "not_found"}
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except ValueError:
+        return None, {"status": "manifest_invalid", "path": manifest_path.as_posix()}
+    texts = []
+    files = []
+    for f in manifest.get("files") or []:
+        parsed = f.get("parsed") or {}
+        path = parsed.get("path")
+        if path and Path(path).suffix.lower() == ".txt" and Path(path).exists():
+            texts.append(Path(path).read_text(encoding="utf-8", errors="ignore"))
+        files.append({
+            "type": f.get("type"),
+            "path": f.get("path"),
+            "sha256": f.get("sha256"),
+            "parsed": parsed,
+        })
+    text = "\n\n".join(texts)[:30000]
+    return text or None, {
+        "status": "loaded" if text else "no_parsed_text",
+        "manifest": manifest_path.as_posix(),
+        "files": files,
+        "chars": len(text),
+    }
 
 
 def cdp_available() -> bool:
@@ -350,6 +480,19 @@ def task_ingest_preview(run: Run) -> dict:
 
     for idx, pdf in enumerate(pdfs, 1):
         sha = sha256_file(pdf)
+        try:
+            p_manifest, manifest_source = paper_manifest.load_for_pdf(pdf)
+        except paper_manifest.ManifestError as exc:
+            run.log(f"  [manifest 校验失败] {exc}")
+            mark_processed(pdf, sha, "manifest_invalid", batch_id, str(exc))
+            skipped.append({"pdf": pdf.name, "reason": f"manifest 校验失败：{exc}"})
+            continue
+        run.log(
+            f"  manifest {p_manifest['paper_id']}（{manifest_source}，"
+            f"SI={p_manifest['si']['status']}，A判定={p_manifest['eligibility']['verdict']}）"
+        )
+        if manifest_source == "legacy":
+            run.log("  [兼容] 未找到 A 阶段 manifest，已按文件名/哈希生成；建议先运行 tools/build_manifest.py")
         run.step(f"[{idx}/{len(pdfs)}] 解析 PDF：{pdf.name}")
         try:
             run_script(run, ["scripts/pdf_to_text.py", "--pdf", str(pdf), "--outdir", str(parsed_dir)])
@@ -365,24 +508,115 @@ def task_ingest_preview(run: Run) -> dict:
             skipped.append({"pdf": pdf.name, "reason": "解析未生成文本"})
             continue
         text = txt.read_text(encoding="utf-8", errors="ignore")
+        ocr_meta = None
+        ocr_gate_meta = None
+        parse_mode = "text"
+        report_path = parsed_dir / "parse_report.json"
+        if report_path.exists():
+            try:
+                for item in json.loads(report_path.read_text(encoding="utf-8")):
+                    if Path(item.get("pdf", "")).name == pdf.name:
+                        ocr_meta = item.get("ocr")
+                        ocr_gate_meta = ocr_gate.summarize(ocr_meta)
+                        if (ocr_meta or {}).get("pages"):
+                            parse_mode = "ocr"
+                        break
+            except ValueError:
+                pass
+        if ocr_gate_meta and ocr_gate_meta.get("decision") == "fail":
+            reason = "OCR 质量门控未通过：" + ", ".join(ocr_gate_meta.get("reasons") or [])
+            if len(text.strip()) < 500:
+                run.log(f"  {reason}；可用原生文本不足，转入人工复核")
+                mark_processed(pdf, sha, "ocr_review_required", batch_id, reason)
+                skipped.append({"pdf": pdf.name, "reason": reason, "ocr_gate": ocr_gate_meta})
+                papers.append({
+                    "pdf": pdf.name,
+                    "paper_id": p_manifest["paper_id"],
+                    "records": 0,
+                    "status": "ocr_review_required",
+                    "ocr_gate": ocr_gate_meta,
+                })
+                continue
+            parse_mode = "ocr_review"
+            run.log(f"  {reason}；原生文本仍可用，继续但标记人工复核")
+        if ocr_gate_meta and ocr_gate_meta.get("decision") == "review":
+            parse_mode = "ocr_review"
+            run.log(f"  OCR 复核标记：{', '.join(ocr_gate_meta.get('reasons') or [])}")
         if len(text.strip()) < 500:
             run.log("  文本过短，疑似扫描件，跳过")
             mark_processed(pdf, sha, "scanned_or_short", batch_id)
             skipped.append({"pdf": pdf.name, "reason": "疑似扫描件/文本过短"})
             continue
-        run.log(f"  文本 {len(text)} 字符")
+        si_text, si_meta = _load_si(pdf, p_manifest)
+        if p_manifest["si"]["status"] == "failed":
+            reason = "SI 完整性校验失败，停止使用该 SI"
+            run.log(f"  {reason}")
+            mark_processed(pdf, sha, "si_integrity_failed", batch_id, reason)
+            skipped.append({"pdf": pdf.name, "reason": reason})
+            continue
+        if si_text:
+            run.log(f"  补充材料：{si_meta.get('chars')} 字符")
+        run.log(f"  文本 {len(text)} 字符；解析模式 {parse_mode}")
 
         run.step(f"[{idx}/{len(pdfs)}] AI 抽取：{pdf.name}")
         try:
-            raws, _ = extract.extract_paper(text, pdf=pdf, compounds=compounds, log=run.log)
+            raws, extract_meta = extract.extract_paper(
+                text,
+                pdf=pdf,
+                compounds=compounds,
+                log=run.log,
+                batch_id=batch_id,
+                parsed_text_path=txt,
+                parse_mode=parse_mode,
+                ocr_meta=ocr_meta,
+                si_text=si_text,
+                si_meta=si_meta,
+            )
         except Exception as exc:  # noqa: BLE001
             run.log(f"  [抽取失败] {exc}")
+            fail_payload = provenance.make_snapshot_payload(
+                batch_id=batch_id,
+                pdf=pdf,
+                pdf_hash=sha,
+                parsed_text_path=txt,
+                parsed_text_hash=provenance.sha256_file(txt),
+                raw_records=[],
+                normalized_records=[],
+                modules=[],
+                skill_meta={},
+                prompt_meta={},
+                model_info={},
+                model_params={},
+                parse_mode=parse_mode,
+                ocr_meta=ocr_meta,
+                si_meta=si_meta,
+                chart_meta=None,
+                raw_output="",
+                status="extract_failed",
+                error=str(exc),
+                manifest=p_manifest,
+            )
+            fail_path, _ = provenance.write_snapshot(bdir, fail_payload, pdf.stem)
             mark_processed(pdf, sha, "extract_failed", batch_id, str(exc))
-            skipped.append({"pdf": pdf.name, "reason": f"抽取失败：{exc}"})
+            skipped.append({"pdf": pdf.name, "reason": f"抽取失败：{exc}", "snapshot": fail_path.as_posix()})
+            papers.append({"pdf": pdf.name, "records": 0, "chars": len(text), "status": "extract_failed", "snapshot": fail_path.relative_to(ROOT).as_posix()})
             continue
 
-        kept = 0
+        norm_text = provenance.normalize_text(text)
+        doi = (p_manifest.get("doi") or {}).get("value") or extract.doi_from_filename(pdf)
+        cond_profile = condition_profile.profile_for_doi(doi)
+        condition_meta = None
+        pairs: list[tuple[dict, dict, dict, dict]] = []
+        local_skipped: list[dict] = []
         for raw in raws:
+            if cond_profile:
+                applied = condition_profile.apply_to_raw(raw, text, cond_profile)
+                if applied:
+                    condition_meta = {
+                        "version": cond_profile.get("version"),
+                        "scope": cond_profile.get("scope"),
+                        "changed": applied.get("changed"),
+                    }
             try:
                 rec = extract.normalize(
                     raw,
@@ -394,12 +628,259 @@ def task_ingest_preview(run: Run) -> dict:
             except extract.SkipRecord as exc:
                 run.log(f"  跳过一条：{exc}")
                 skipped.append({"pdf": pdf.name, "reason": str(exc)})
+                local_skipped.append({"reason": str(exc), "raw": raw})
                 continue
+            pairs.append(_finalize_pair(
+                raw, rec, norm_text,
+                context={"extraction_method": "llm", "condition_profile": condition_meta},
+                modules=extract_meta["modules"],
+            ))
+
+        # Table-first VLE path: deterministic column-group parsing for the
+        # paper-specific low-pressure apparatus. It supplements the LLM and
+        # replaces duplicate LLM rows; it does not guess method constants.
+        vle_meta = None
+        profile = vle_table_parser.profile_for_doi(doi)
+        if profile:
+            try:
+                vle_result = vle_table_parser.parse_vle_tables(pdf, profile)
+                vle_raws = vle_table_parser.points_to_raw_records(
+                    vle_result,
+                    pdf,
+                    source_template=(raws[0].get("source") if raws else None),
+                    doi=doi,
+                    total_pressure_kPa=profile["total_pressure_kPa"],
+                    liquid_volume_L=profile["liquid_volume_L"],
+                )
+                vle_pairs = []
+                for raw in vle_raws:
+                    rec = extract.normalize(
+                        raw,
+                        compounds=compounds,
+                        pdf=pdf,
+                        pdf_hash=sha,
+                        batch_id=batch_id,
+                        extraction_method="deterministic_vle_table",
+                    )
+                    vle_pairs.append(_finalize_pair(
+                        raw, rec, norm_text,
+                        context={"extraction_method": "deterministic_vle_table", "vle_profile": profile},
+                        modules=extract_meta["modules"],
+                    ))
+
+                parser_keys = {_record_key(rec) for _, rec, _, _ in vle_pairs}
+                pairs = [p for p in pairs if _record_key(p[1]) not in parser_keys] + vle_pairs
+                vle_meta = {
+                    "profile": profile,
+                    "counts": vle_result.get("counts"),
+                    "tables": [
+                        {"number": t.get("number"), "recipe": t.get("recipe"), "points": t.get("points")}
+                        for t in vle_result.get("tables") or []
+                    ],
+                    "selected": len(vle_result.get("selected_40C_lowP") or []),
+                }
+                run.log(f"  确定性 VLE 表格：{vle_meta['counts']}；合并后 {len(pairs)} 条")
+            except Exception as exc:  # noqa: BLE001
+                run.log(f"  [VLE 表格解析失败] {exc}")
+                vle_meta = {"status": "failed", "error": str(exc)[:300]}
+
+        # Text-described reference-row path: a 30 wt% MEA baseline can be
+        # scattered across table/methods/results and have no standalone row.
+        reference_meta = None
+        ref_profile = reference_case_parser.profile_for_doi(doi)
+        if ref_profile:
+            try:
+                ref_raws = reference_case_parser.parse_reference(text, ref_profile, pdf, doi)
+                ref_pairs = []
+                for raw in ref_raws:
+                    rec = extract.normalize(
+                        raw,
+                        compounds=compounds,
+                        pdf=pdf,
+                        pdf_hash=sha,
+                        batch_id=batch_id,
+                        extraction_method="deterministic_reference_profile",
+                    )
+                    ref_pairs.append(_finalize_pair(
+                        raw, rec, norm_text,
+                        context={
+                            "extraction_method": "deterministic_reference_profile",
+                            "reference_profile": {
+                                "version": ref_profile.get("version"),
+                                "scope": ref_profile.get("scope"),
+                                "loc": ref_profile.get("loc_label"),
+                            },
+                        },
+                        modules=extract_meta["modules"],
+                    ))
+                ref_keys = {_record_key(rec) for _, rec, _, _ in ref_pairs}
+                pairs = [p for p in pairs if _record_key(p[1]) not in ref_keys] + ref_pairs
+                reference_meta = {
+                    "profile_version": ref_profile.get("version"),
+                    "scope": ref_profile.get("scope"),
+                    "records": len(ref_pairs),
+                    "loc": ref_profile.get("loc_label"),
+                }
+                run.log(f"  参考行 profile：{len(ref_pairs)} 条；合并后 {len(pairs)} 条")
+            except Exception as exc:  # noqa: BLE001
+                run.log(f"  [参考行解析失败] {exc}")
+                reference_meta = {"status": "failed", "error": str(exc)[:300]}
+
+        # Vertical/nested-unit VLE tables: generic row parser + paper profile.
+        # Existing LLM rows are kept; deterministic rows only fill a missing point.
+        vertical_meta = None
+        vertical_profile = vle_table_parser.vertical_profile_for_doi(doi)
+        if vertical_profile:
+            try:
+                vres = vle_table_parser.parse_vertical_table(pdf, vertical_profile)
+                vraws = vle_table_parser.vertical_points_to_raw_records(
+                    vres, pdf, doi=doi,
+                    source_template=(raws[0].get("source") if raws else None),
+                )
+                added = 0
+                duplicates = 0
+                for raw in vraws:
+                    rec = extract.normalize(
+                        raw,
+                        compounds=compounds,
+                        pdf=pdf,
+                        pdf_hash=sha,
+                        batch_id=batch_id,
+                        extraction_method="deterministic_vle_vertical",
+                    )
+                    pair = _finalize_pair(
+                        raw, rec, norm_text,
+                        context={
+                            "extraction_method": "deterministic_vle_vertical",
+                            "vle_profile": {
+                                "version": vertical_profile.get("version"),
+                                "table": vertical_profile.get("table"),
+                                "source": vertical_profile.get("source"),
+                            },
+                        },
+                        modules=extract_meta["modules"],
+                    )
+                    if _is_vertical_duplicate(rec, pairs):
+                        duplicates += 1
+                        continue
+                    pairs.append(pair)
+                    added += 1
+                vertical_meta = {
+                    "profile_version": vertical_profile.get("version"),
+                    "table": vertical_profile.get("table"),
+                    "counts": vres.get("counts"),
+                    "errors": vres.get("errors"),
+                    "added": added,
+                    "duplicates_skipped": duplicates,
+                    "skipped_rows": vres.get("skipped") or [],
+                }
+                run.log(
+                    f"  纵向 VLE 表：解析 {vres.get('counts', {}).get('points', 0)} 点，"
+                    f"新增 {added}，与 LLM 重复 {duplicates}"
+                )
+            except Exception as exc:  # noqa: BLE001
+                run.log(f"  [纵向 VLE 表解析失败] {exc}")
+                vertical_meta = {"status": "failed", "error": str(exc)[:300]}
+
+        for idx, (_, rec, _, _) in enumerate(pairs):
+            rec["record_id"] = excerpt_store.record_id(
+                batch_id, p_manifest["paper_id"], rec, idx
+            )
+
+        payload = provenance.make_snapshot_payload(            batch_id=batch_id,
+            pdf=pdf,
+            pdf_hash=sha,
+            parsed_text_path=txt,
+            parsed_text_hash=provenance.sha256_file(txt),
+            raw_records=[p[0] for p in pairs],
+            normalized_records=[p[1] for p in pairs],
+            modules=extract_meta["modules"],
+            skill_meta=extract_meta["skill"],
+            prompt_meta=extract_meta["prompt"],
+            model_info=extract_meta["model"],
+            model_params=extract_meta["model_params"],
+            parse_mode=extract_meta["parse_mode"],
+            ocr_meta=extract_meta["ocr"],
+            si_meta=extract_meta["si"],
+            chart_meta=extract_meta["chart"],
+            raw_output=extract_meta["raw_output"],
+            status="ok" if pairs else "no_records",
+            table_meta={
+                "pages": extract_meta.get("table_context_pages") or [],
+                "chars": extract_meta.get("table_context_chars") or 0,
+                "vle_parser": vle_meta,
+                "vle_vertical": vertical_meta,
+                "reference_parser": reference_meta,
+                "condition_profile": condition_meta,
+                "ocr_gate": ocr_gate_meta,
+            },
+            verifications=[p[2] for p in pairs],
+            reasonings=[p[3] for p in pairs],
+            skipped=local_skipped,
+            manifest=p_manifest,
+        )
+        snap_path, snap_hash = provenance.write_snapshot(bdir, payload, pdf.stem)
+        excerpt_entries = excerpt_store.write_records(
+            bdir,
+            pairs,
+            batch_id=batch_id,
+            paper_id=p_manifest["paper_id"],
+            snapshot_path=snap_path,
+            snapshot_hash=snap_hash,
+        )
+        snap_rel = excerpt_store.rel_path(snap_path)
+
+        kept = 0
+        levels = Counter()
+        for _, rec, _, _ in pairs:
+            rec["test"]["raw_data_path"] = snap_rel
+            rec["test"]["raw_data_hash"] = snap_hash
+            levels[rec["qc"]["qc_level"]] += 1
             records.append(rec)
             kept += 1
-        run.log(f"  抽取 {len(raws)} 条，标准化保留 {kept} 条")
-        mark_processed(pdf, sha, f"extracted:{kept}" if kept else "no_records", batch_id)
-        papers.append({"pdf": pdf.name, "records": kept, "chars": len(text)})
+        run.log(f"  抽取 {len(raws)} 条，标准化保留 {kept} 条；QC {dict(levels)}")
+        run.log(f"  快照：{snap_path.relative_to(ROOT).as_posix()}")
+        mark_processed(pdf, sha, f"extracted:{kept}" if kept else "no_records", batch_id, snap_path.as_posix())
+        papers.append(
+            {
+                "pdf": pdf.name,
+                "paper_id": p_manifest["paper_id"],
+                "manifest_source": manifest_source,
+                "manifest_version": p_manifest["manifest_version"],
+                "records": kept,
+                "chars": len(text),
+                "status": "ok" if kept else "no_records",
+                "snapshot": snap_path.relative_to(ROOT).as_posix(),
+                "excerpt_index": (bdir / "raw" / "excerpt_index.json").relative_to(ROOT).as_posix(),
+                "excerpts": len(excerpt_entries),
+                "modules": [m["id"] for m in extract_meta["modules"]],
+                "prompt_sha256": extract_meta["prompt"].get("combined_sha256"),
+                "model": extract_meta["model"].get("model"),
+                "parse_mode": parse_mode,
+                "ocr_pages": (ocr_meta or {}).get("pages") or [],
+                "ocr_gate": ocr_gate_meta,
+                "si": si_meta,
+                "vle_parser": vle_meta,
+                "vle_vertical": vertical_meta,
+                "reference_parser": reference_meta,
+                "condition_profile": condition_meta,
+                "qc": dict(levels),
+            }
+        )
+
+    batch_manifest = {
+        "batch_id": batch_id,
+        "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+        "manifest_version": paper_manifest.MANIFEST_VERSION,
+        "excerpt_version": excerpt_store.EXCERPT_VERSION,
+        "excerpt_index": f"{(bdir / 'raw' / 'excerpt_index.json').relative_to(ROOT).as_posix()}" if records else None,
+        "papers": papers,
+        "records": len(records),
+        "note": "One snapshot per paper extraction; see raw/llm_*.json.",
+    }
+    (bdir / "extraction_manifest.json").write_text(
+        json.dumps(batch_manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
     raw_path = bdir / "raw_agent.jsonl"
     with raw_path.open("w", encoding="utf-8") as fh:

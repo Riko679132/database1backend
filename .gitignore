@@ -9,12 +9,18 @@ data/control/
 
 # 原始全文与备份（含可能受版权保护的 PDF 与本地数据库副本）
 data/raw_pdfs/
+data/raw_si/
+data/manifests/
 data/backups/
 data/*.sqlite
 data/.db.lock
 
 # 抽取产物（含原文摘录，按需保留本地）
 extractions/
+
+# 评估产物（含测试 PDF、临时数据库、解析文本与摘录）
+evaluation/artifacts/
+.tmp_*
 
 # Python
 __pycache__/
